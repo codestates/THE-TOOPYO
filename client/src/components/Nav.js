@@ -1,15 +1,20 @@
 import { useState } from 'react';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import './Nav.css';
+import App from '../App';
+import LoginButton from './modals/LoginBtn';
+import SignUpButton from './modals/SignUpBtn';
+import Sidebar from './SideBar/SideBar';
 
-function Nav(isLogin) {
+function Nav({ isLogin, loginHandler }) {
     return (
         <nav>
             <div className="nav_inner">
+                <Sidebar />
                 <div className="logo_container">
-                    {/* <Route exact path="/">
+                    <h1>
                         <img className="logo" src=""></img>
-                    </Route> */}
-                    <div id="logo"></div>
+                    </h1>
                 </div>
                 <div>
                     <ul className="button_container">
@@ -19,16 +24,23 @@ function Nav(isLogin) {
                             </button>
                         </li>
                         <li>
-                            <button className="new_Content_Btn">새 글 작성</button>
+                            <Link to="/content">
+                                <button className="new_Content_Btn nav_btn">새 글 작성</button>
+                            </Link>
+                        </li>{' '}
+                        <li>
+                            <SignUpButton loginHandler={loginHandler} />
                         </li>
                         {isLogin ? (
                             <li>
-                                <button>my page</button>
+                                <Link to="/Mypage">
+                                    <button className="nav_btn">my page</button>
+                                </Link>
                             </li>
                         ) : (
-                            <li>
-                                <button>login</button>
-                            </li>
+                            <div>
+                                <LoginButton loginHandler={loginHandler} />
+                            </div>
                         )}
                     </ul>
                 </div>

@@ -1,12 +1,15 @@
 import './App.css';
 import { useReducer, useState } from 'react';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Nav from './components/Nav';
 import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
+import SignupPage from './pages/SignUp/SignUpPage';
+import CurContent from './pages/CurContent/CurContent';
 
-function App() {
+export default function App() {
     const [isLogin, setIsLogin] = useState(false);
+
     const loginHandler = function () {
         setIsLogin(true);
     };
@@ -22,20 +25,36 @@ function App() {
     getContentList();
 
     return (
-        <div>
-            <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
-            <img className="main_banner" src="" alt=""></img>
-            <div>
-                <ul>
-                    {contentList.map((list) => {
-                        <Route path="/CurContent">
-                            <Thumbnail list={list}></Thumbnail>
-                        </Route>;
-                    })}
-                </ul>
+        <BrowserRouter>
+            <div className="app">
+                <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
+                <img className="main_banner" src="" alt=""></img>
+                <Switch>
+                    {/* <Route path="/Mypage">
+                        <Mypage></Mypage>
+                    </Route> */}
+                    {/* <Route path="/Login">
+                        <Login></Login>
+                    </Route> */}
+                    <Route path="/curcontent" component={CurContent} />
+                    <Route path="/signup" component={SignupPage} />
+                    {/* <Route path="/NewContent">
+                        <NewContent></NewContent>
+                    </Route> */}
+                    {/* <Route path="CurContent">
+                        <CurContent></CurContent>
+                    </Route> */}
+                    <div>
+                        <ul>
+                            {contentList.map((list) => {
+                                <li>
+                                    <Thumbnail list={list}></Thumbnail>
+                                </li>;
+                            })}
+                        </ul>
+                    </div>
+                </Switch>
             </div>
-        </div>
+        </BrowserRouter>
     );
 }
-
-export default App;
