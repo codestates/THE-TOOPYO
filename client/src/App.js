@@ -9,7 +9,7 @@ import CurContent from './components/curContent';
 //import Login from './components/Login.js';
 //import NewContent from './pages/Newcontent.js';
 //import CurContent from './pages/CurContent.js';
-
+axios.defaults.withCredentials = true;
 function App() {
     const [isLogin, setIsLogin] = useState(false);
 
@@ -63,5 +63,3 @@ function App() {
         </BrowserRouter>
     );
 }
-
-export default App;
