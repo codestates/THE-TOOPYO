@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CurContent from './curContent';
+import CurContent from '../pages/CurContent/CurContent';
 
 function Thumbnail({ list }) {
     return (

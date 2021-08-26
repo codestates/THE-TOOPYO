@@ -25,7 +25,7 @@ nav {
     padding-top: 0.52vw;
 }
 
-button {
+.nav_btn {
     width: 5vw;
     height: 3vw;
     background-color: #060a7d;
@@ -35,9 +35,4 @@ button {
     margin: 0 0.52vw;
     box-shadow: none;
     border: none;
-}
-
-button:hover {
-    border: 1px solid #fff;
-    border-radius: 40%;
 }

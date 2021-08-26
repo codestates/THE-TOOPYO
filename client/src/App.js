@@ -4,13 +4,10 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Nav from './components/Nav';
 import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
-import CurContent from './components/curContent';
-//import Mypage from './pages/Mypage.js';
-//import Login from './components/Login.js';
-//import NewContent from './pages/Newcontent.js';
-//import CurContent from './pages/CurContent.js';
-axios.defaults.withCredentials = true;
-function App() {
+import SignupPage from './pages/SignUp/SignUpPage';
+import CurContent from './pages/CurContent/CurContent';
+
+export default function App() {
     const [isLogin, setIsLogin] = useState(false);
 
     const loginHandler = function () {
@@ -35,26 +32,24 @@ function App() {
                 <Switch>
                     {/* <Route path="/Mypage">
                         <Mypage></Mypage>
-                    </Route>
-                    <Route path="/Login">
+                    </Route> */}
+                    {/* <Route path="/Login">
                         <Login></Login>
-                    </Route>
-                    <Route path="/SigUp">
-                        <SignUp></SignUp>
-                    </Route> 
-                    <Route path="/NewContent">
+                    </Route> */}
+                    <Route path="/curcontent" component={CurContent} />
+                    <Route path="/signup" component={SignupPage} />
+                    {/* <Route path="/NewContent">
                         <NewContent></NewContent>
-                    </Route>
-                    <Route path="CurContent">
+                    </Route> */}
+                    {/* <Route path="CurContent">
                         <CurContent></CurContent>
-                    </Route>
-                    */}
+                    </Route> */}
                     <div>
                         <ul>
                             {contentList.map((list) => {
-                                <Route path="/CurContent">
+                                <li>
                                     <Thumbnail list={list}></Thumbnail>
-                                </Route>;
+                                </li>;
                             })}
                         </ul>
                     </div>

@@ -3,14 +3,10 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './LoginModal.css';
 
-function Login({ isOpen, close, open }) {
+function Login({ isOpen, close, loginHandler }) {
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: '',
-    });
-
-    const [isLogin, setIsLogin] = useState({
-        isLogin: false,
     });
 
     const [isLoginOrSignupModalOn, setIsLoginOrSignupModalOn] = useState(false);
@@ -18,12 +14,11 @@ function Login({ isOpen, close, open }) {
     const inputHandler = (e) => {
         setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
     };
-    const loginHandler = () => {
-        setIsLogin(true);
-    };
+
     const handleLoginOrSignupModal = () => {
         setIsLoginOrSignupModalOn(true);
     };
+
     const loginRequestHandler = () => {
         axios
             .post(
