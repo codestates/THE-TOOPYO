@@ -25,19 +25,15 @@ function CurContent(id) {
     //
 
     const getContentDetail = () => {
-        axios
-            .get(`https://localhost:4000/content/:${id}`, { headers: { authorization: '' } }).then((res) => {
-                setContent(res.data.content);
-                setWriter(res.data.writer);
-            });
+        axios.get(`https://localhost:4000/content/:${id}`, { headers: { authorization: '' } }).then((res) => {
+            setContent(res.data.content);
+            setWriter(res.data.writer);
+        });
     };
 
     const getAgree = () => {
-        axios
-            .get(`https://localhost:4000/content/agree/:${id}`, )
-    }
-
-    
+        axios.get(`https://localhost:4000/content/agree/:${id}`);
+    };
 
     return (
         <div>
@@ -58,7 +54,7 @@ function CurContent(id) {
                                 <img src="" alt="versus"></img>
                             </li>
                             <li>
-                                <img src={content.picture_2} alt={content.description} className="picture_2" onClick={}></img>
+                                <img src={content.picture_2} alt={content.description} className="picture_2"></img>
                             </li>
                         </ul>
                         <div className="contentInfo">
