@@ -9,15 +9,15 @@ import Sidebar from './SideBar/SideBar';
 function Nav({ isLogin, loginHandler }) {
     return (
         <nav>
-            <div className="nav_inner">
+            <div className="navInner">
                 <Sidebar />
-                <div className="logo_container">
+                <div className="logoContainer">
                     <h1>
                         <img className="logo" src=""></img>
                     </h1>
                 </div>
                 <div>
-                    <ul className="button_container">
+                    <ul className="buttonContainer">
                         <li>
                             <button>
                                 <img src="./searchIcon.png"></img>
@@ -25,7 +25,7 @@ function Nav({ isLogin, loginHandler }) {
                         </li>
                         <li>
                             <Link to="/content">
-                                <button className="new_Content_Btn nav_btn">새 글 작성</button>
+                                <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
                         </li>{' '}
                         <li>
@@ -34,7 +34,7 @@ function Nav({ isLogin, loginHandler }) {
                         {isLogin ? (
                             <li>
                                 <Link to="/Mypage">
-                                    <button className="nav_btn">my page</button>
+                                    <button className="navBtn">my page</button>
                                 </Link>
                             </li>
                         ) : (
