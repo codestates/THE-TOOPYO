@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import './Nav.css';
 
 function Nav(isLogin) {
@@ -6,9 +7,13 @@ function Nav(isLogin) {
         <nav>
             <div className="nav_inner">
                 <div className="logo_container">
-                    {/* <Route exact path="/">
-                        <img className="logo" src=""></img>
-                    </Route> */}
+                    <Route exact path="/">
+                        <App>
+                            <h1>
+                                <img className="logo" src=""></img>
+                            </h1>
+                        </App>
+                    </Route>
                     <div id="logo"></div>
                 </div>
                 <div>
@@ -19,15 +24,21 @@ function Nav(isLogin) {
                             </button>
                         </li>
                         <li>
-                            <button className="new_Content_Btn">새 글 작성</button>
+                            <Link to="NewContent">
+                                <button className="new_Content_Btn">새 글 작성</button>
+                            </Link>
                         </li>
                         {isLogin ? (
                             <li>
-                                <button>my page</button>
+                                <Link to="/Mypage">
+                                    <button>my page</button>
+                                </Link>
                             </li>
                         ) : (
                             <li>
-                                <button>login</button>
+                                <Link to="/Login">
+                                    <button>login</button>
+                                </Link>
                             </li>
                         )}
                     </ul>
