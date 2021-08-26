@@ -4,11 +4,13 @@ import './Nav.css';
 import App from '../App';
 import LoginButton from './modals/LoginBtn';
 import SignUpButton from './modals/SignUpBtn';
+import Sidebar from './SideBar/SideBar';
 
 function Nav({ isLogin, loginHandler }) {
     return (
         <nav>
             <div className="nav_inner">
+                <Sidebar />
                 <div className="logo_container">
                     <h1>
                         <img className="logo" src=""></img>
@@ -22,7 +24,7 @@ function Nav({ isLogin, loginHandler }) {
                             </button>
                         </li>
                         <li>
-                            <Link to="NewContent">
+                            <Link to="/content">
                                 <button className="new_Content_Btn nav_btn">새 글 작성</button>
                             </Link>
                         </li>{' '}
