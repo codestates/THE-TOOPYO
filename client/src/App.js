@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import LoginButton from './components/modals/LoginBtn';
+import SignUpButton from '../src/pages/SignUp/SignUpBtn';
+import axios from 'axios';
+import { BrowserRouter, Route } from 'react-router-dom';
+import Login from './components/modals/LoginModal';
+import Sidebar from '../src/components/SideBar/SideBar';
+import SignupPage from './pages/SignUp/SignUpPage';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+axios.defaults.withCredentials = true;
 
+const App = () => {
+    return (
+        <>
+            <BrowserRouter>
+                <LoginButton />
+                <Sidebar />
+                <SignUpButton />
+                <Route path="/" component={Login} />
+                <Route exact path="/signup" component={SignupPage} />
+            </BrowserRouter>
+        </>
+    );
+};
 export default App;
