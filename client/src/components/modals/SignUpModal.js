@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './SignUp.css';
+import '../../pages/SignUp/SignUp.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-function Signup({ isOpen, close }) {
+function Signup({ isOpen, close, loginHandler }) {
     const [signupInfo, setSignupInfo] = useState({
         picture: '',
         provider: '',
@@ -13,14 +13,8 @@ function Signup({ isOpen, close }) {
         mobile: '',
     });
     const [errorMessage, setErrorMessage] = useState(false);
-    const [isLogin, setIsLogin] = useState({
-        isLogin: false,
-    });
-    const history = useHistory();
 
-    const loginHandler = () => {
-        setIsLogin(true);
-    };
+    const history = useHistory();
 
     const fileEvent = (e) => {
         const reader = new FileReader();

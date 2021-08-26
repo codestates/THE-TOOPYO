@@ -1,4 +1,12 @@
 .sidebar {
+    margin: 0 auto;
+    width: 62.5vw;
+    display: flex;
+    justify-content: flex-end;
 }
 .sidebarContents {
+    margin: 0 auto;
+    width: 62.5vw;
+    display: flex;
+    justify-content: flex-end;
 }
