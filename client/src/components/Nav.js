@@ -4,26 +4,28 @@ import './Nav.css';
 import App from '../App';
 import LoginButton from './modals/LoginBtn';
 import SignUpButton from './modals/SignUpBtn';
+import Sidebar from './SideBar/SideBar';
 
 function Nav({ isLogin, loginHandler }) {
     return (
         <nav>
-            <div className="nav_inner">
-                <div className="logo_container">
+            <div className="navInner">
+                <Sidebar />
+                <div className="logoContainer">
                     <h1>
                         <img className="logo" src=""></img>
                     </h1>
                 </div>
                 <div>
-                    <ul className="button_container">
+                    <ul className="buttonContainer">
                         <li>
                             <button>
                                 <img src="./searchIcon.png"></img>
                             </button>
                         </li>
                         <li>
-                            <Link to="NewContent">
-                                <button className="new_Content_Btn nav_btn">새 글 작성</button>
+                            <Link to="/content">
+                                <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
                         </li>{' '}
                         <li>
@@ -32,7 +34,7 @@ function Nav({ isLogin, loginHandler }) {
                         {isLogin ? (
                             <li>
                                 <Link to="/Mypage">
-                                    <button className="nav_btn">my page</button>
+                                    <button className="navBtn">my page</button>
                                 </Link>
                             </li>
                         ) : (

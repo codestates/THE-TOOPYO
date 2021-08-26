@@ -28,7 +28,7 @@ export default function App() {
         <BrowserRouter>
             <div className="app">
                 <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
-                <img className="main_banner" src="" alt=""></img>
+                <img className="mainBanner" src="" alt=""></img>
                 <Switch>
                     {/* <Route path="/Mypage">
                         <Mypage></Mypage>
