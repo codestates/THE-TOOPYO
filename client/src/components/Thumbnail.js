@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CurContent from './curContent';
+import CurContent from '../pages/CurContent/CurContent';
 
 function Thumbnail({ list }) {
     return (
         <Link to="/CurContent">
-            <CurContent info={list.id}>
+            <CurContent id={list.id}>
                 <div>
                     <h1>{list.title}</h1>
                     <img className="picture_1" src={list.picture_1}></img>

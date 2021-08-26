@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Signup from './SignUp';
+import Signup from './SignUpModal';
 
 function SignUpButton() {
     const [isModalOpen, setIsModalOpen] = useState({

@@ -1,45 +1,46 @@
 import { useState } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import './Nav.css';
+import App from '../App';
+import LoginButton from './modals/LoginBtn';
+import SignUpButton from './modals/SignUpBtn';
+import Sidebar from './SideBar/SideBar';
 
-function Nav(isLogin) {
+function Nav({ isLogin, loginHandler }) {
     return (
         <nav>
-            <div className="nav_inner">
-                <div className="logo_container">
-                    <Route exact path="/">
-                        <App>
-                            <h1>
-                                <img className="logo" src=""></img>
-                            </h1>
-                        </App>
-                    </Route>
-                    <div id="logo"></div>
+            <div className="navInner">
+                <Sidebar />
+                <div className="logoContainer">
+                    <h1>
+                        <img className="logo" src=""></img>
+                    </h1>
                 </div>
                 <div>
-                    <ul className="button_container">
+                    <ul className="buttonContainer">
                         <li>
                             <button>
                                 <img src="./searchIcon.png"></img>
                             </button>
                         </li>
                         <li>
-                            <Link to="NewContent">
-                                <button className="new_Content_Btn">새 글 작성</button>
+                            <Link to="/content">
+                                <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
+                        </li>{' '}
+                        <li>
+                            <SignUpButton loginHandler={loginHandler} />
                         </li>
                         {isLogin ? (
                             <li>
                                 <Link to="/Mypage">
-                                    <button>my page</button>
+                                    <button className="navBtn">my page</button>
                                 </Link>
                             </li>
                         ) : (
-                            <li>
-                                <Link to="/Login">
-                                    <button>login</button>
-                                </Link>
-                            </li>
+                            <div>
+                                <LoginButton loginHandler={loginHandler} />
+                            </div>
                         )}
                     </ul>
                 </div>
