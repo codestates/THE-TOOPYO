@@ -49,7 +49,7 @@ app.all('/content', controllers.content);
 
 const PORT = 80;
 
-server = app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
     console.log('열려라 서버!');
 });
 
