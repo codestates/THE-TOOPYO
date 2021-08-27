@@ -4,7 +4,7 @@ nav {
     background-color: #060a7d;
 }
 
-.nav_inner {
+.navInner {
     margin: 0 auto;
     width: 62.5vw;
     display: flex;
@@ -19,13 +19,13 @@ nav {
     margin-top: 10px;
 }
 
-.button_container {
+.buttonContainer {
     display: flex;
     justify-content: flex-end;
     padding-top: 0.52vw;
 }
 
-button {
+.navBtn {
     width: 5vw;
     height: 3vw;
     background-color: #060a7d;
@@ -35,9 +35,4 @@ button {
     margin: 0 0.52vw;
     box-shadow: none;
     border: none;
-}
-
-button:hover {
-    border: 1px solid #fff;
-    border-radius: 40%;
 }
