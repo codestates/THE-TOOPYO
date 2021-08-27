@@ -5,7 +5,7 @@
     cursor: pointer;
 }
 .mypage:hover {
-    background-color: rgba(6, 10, 125, 0.8);
+    background-color: rgba(6, 10, 125, 1);
     color: white;
 }
 .mycontent {
@@ -15,14 +15,10 @@
     cursor: pointer;
 }
 .mycontent:hover {
-    background-color: rgba(6, 10, 125, 0.8);
+    background-color: rgba(6, 10, 125, 1);
     color: white;
 }
-.hello {
-    float: left;
-    width: 100%;
-}
-.pf-input-area {
+.pfArea {
     padding: 0;
     margin: 0;
     max-width: 100%;
@@ -30,4 +26,17 @@
     display: block;
 }
 .label {
+    color: #333;
+    font-size: 20px;
+    margin-top: 14px;
+    margin-bottom: 14px;
+}
+.inputBox {
+    background-color: rgba(6, 10, 125, 0.8);
+    border-radius: 6px;
+    outline: 0;
+    font-weight: 500;
+    height: 30px;
+    padding: 0 20px;
+    width: 15%;
 }
