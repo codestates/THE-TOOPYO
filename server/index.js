@@ -37,7 +37,7 @@ app.use(
 app.use(cookieParser());
 
 app.get('/', (req, res) => {
-    res.send('hi');
+    res.status(200).send('hi');
 });
 app.post('/login', controllers.login);
 app.get('/signout', controllers.signOut);
@@ -47,10 +47,8 @@ app.all('/user', controllers.userInfo);
 
 app.all('/content', controllers.content);
 
-const HTTPS_PORT = 80;
+const PORT = 80;
 
-app.listen(HTTPS_PORT, () => {
+app.listen(PORT, () => {
     console.log('열려라 서버!');
 });
-
-module.exports = app;
