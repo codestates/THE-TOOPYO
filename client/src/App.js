@@ -6,6 +6,7 @@ import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
 import SignupPage from './pages/SignUp/SignUpPage';
 import CurContent from './pages/CurContent/CurContent';
+import Mypage from './pages/Mypage/Mypage';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState(false);
@@ -38,6 +39,7 @@ export default function App() {
                     {/* <Route path="/Login">
                         <Login></Login>
                     </Route> */}
+                    <Route path="/mypage" component={Mypage} />
                     <Route path="/curcontent" component={CurContent} />
                     <Route path="/signup" component={SignupPage} />
                     {/* <Route path="/NewContent">
