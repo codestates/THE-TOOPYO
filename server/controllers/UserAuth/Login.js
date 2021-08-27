@@ -11,7 +11,7 @@ module.exports = (req, res) => {
         })
         .then((data) => {
             if (!data) {
-                return res.status(401).json({ message: 'Invalaid user' });
+                return res.status(401).json({ message: 'Invalid user' });
             } else {
                 req.session.save(function () {
                     req.session.email = users.email;
