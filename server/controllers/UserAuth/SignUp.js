@@ -11,7 +11,5 @@ module.exports = (req, res) => {
         .then((success) => {
             res.status(201).json({ message: 'ok' });
         })
-    }).catch (err) {
-        console.log(err);
-    }
+    })
 };
