@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import './CurContent.css';
 
 function CurContent({ id, content, writer, auth }) {
     const [isAuthOk, setIsAuthOk] = useState(false); // session id 를 보내고 인증이 완료되어 투표한 경우
@@ -23,10 +24,20 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const getDisagree = () => {
-        axios.get(`https://localhost:4000/content/disagree/:${id}`, { auth: auth.id }).then((res) => {
+        axios.get(`https://localhost:4000/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
             if (res.message === 'disagree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
+            }
+        });
+    };
+
+    const deleteContent = () => {
+        axios.delete(`https://localhost:4000/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+            if (res.message === 'delete complete') {
+                isAuthOkHandler();
+            } else {
+                isAuthNotHandler();
             }
         });
     };
@@ -36,17 +47,23 @@ function CurContent({ id, content, writer, auth }) {
             <div className="content">
                 <h2>{content.title}</h2>
                 <button className="editContent"></button>
-                <button className="deleteContent"></button>
+                <button className="deleteContent" onClick={deleteContent}></button>
                 <div className="contentMain">
                     <div className="contentInner">
                         {isAuthOk ? (
-                            <div className="alert authOk" onClick={isAuthOkHandler}>
-                                투표가 완료되었습니다.
+                            <div className="alert authOk">
+                                <button onClick={isAuthOkHandler} className="checkAlertBtn">
+                                    확인
+                                </button>
+                                요청이 완료되었습니다.
                             </div>
                         ) : null}
 
                         {isAuthNot ? (
                             <div className="alert authNot" onClick={isAuthNotHandler}>
+                                <button onClick={isAuthOkHandler} className="checkAlert">
+                                    확인
+                                </button>
                                 로그인이 필요한 서비스입니다.
                             </div>
                         ) : null}

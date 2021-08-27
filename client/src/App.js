@@ -48,6 +48,7 @@ export default function App() {
                     {/* <Route path="CurContent">
                         <CurContent></CurContent>
                     </Route> */}
+
                     <div>
                         <ul>
                             {contentList.map((list) => {

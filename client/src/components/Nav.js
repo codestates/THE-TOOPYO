@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import './Nav.css';
-import App from '../App';
 import LoginButton from './modals/LoginBtn';
 import SignUpButton from './modals/SignUpBtn';
 import Sidebar from './SideBar/SideBar';
