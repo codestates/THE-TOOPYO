@@ -49,6 +49,8 @@ app.all('/content', controllers.content);
 
 const PORT = 80;
 
-app.listen(PORT, () => {
+server = app.listen(PORT, () => {
     console.log('열려라 서버!');
 });
+
+module.exports = server;
