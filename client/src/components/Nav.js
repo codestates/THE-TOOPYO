@@ -5,6 +5,7 @@ import App from '../App';
 import LoginButton from './modals/LoginBtn';
 import SignUpButton from './modals/SignUpBtn';
 import Sidebar from './SideBar/SideBar';
+import SearchButton from './search/SearchBtn';
 
 function Nav({ isLogin, loginHandler }) {
     return (
@@ -19,9 +20,7 @@ function Nav({ isLogin, loginHandler }) {
                 <div>
                     <ul className="buttonContainer">
                         <li>
-                            <button>
-                                <img src="./searchIcon.png"></img>
-                            </button>
+                            <SearchButton />
                         </li>
                         <li>
                             <Link to="/content">
