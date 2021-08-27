@@ -36,6 +36,9 @@ app.use(
 
 app.use(cookieParser());
 
+app.get('/', (req, res) => {
+    res.send('hi');
+});
 app.post('/login', controllers.login);
 app.get('/signout', controllers.signOut);
 app.post('/signup', controllers.signUp);
