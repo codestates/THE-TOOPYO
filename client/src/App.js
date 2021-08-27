@@ -6,9 +6,10 @@ import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
 import SignupPage from './pages/SignUp/SignUpPage';
 import CurContent from './pages/CurContent/CurContent';
+import Mypage from './pages/Mypage/Mypage';
 
 export default function App() {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState();
     const [auth, setAuth] = useState('');
 
     const loginHandler = function (data) {
@@ -38,6 +39,7 @@ export default function App() {
                     {/* <Route path="/Login">
                         <Login></Login>
                     </Route> */}
+                    <Route path="/mypage" component={Mypage} />
                     <Route path="/curcontent" component={CurContent} />
                     <Route path="/signup" component={SignupPage} />
                     {/* <Route path="/NewContent">
@@ -46,6 +48,7 @@ export default function App() {
                     {/* <Route path="CurContent">
                         <CurContent></CurContent>
                     </Route> */}
+
                     <div>
                         <ul>
                             {contentList.map((list) => {
