@@ -1,6 +1,6 @@
 import './App.css';
-import { useReducer, useState } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { useState } from 'react';
+import { BrowserRouter, Switch, Route, Redirect, useParams } from 'react-router-dom';
 import Nav from './components/Nav';
 import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
@@ -9,9 +9,11 @@ import CurContent from './pages/CurContent/CurContent';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState(false);
+    const [auth, setAuth] = useState('');
 
-    const loginHandler = function () {
+    const loginHandler = function (data) {
         setIsLogin(true);
+        setAuth(data);
     };
 
     const [contentList, setContentList] = useState([]);
@@ -48,7 +50,7 @@ export default function App() {
                         <ul>
                             {contentList.map((list) => {
                                 <li>
-                                    <Thumbnail list={list}></Thumbnail>
+                                    <Thumbnail list={list} auth={auth}></Thumbnail>
                                 </li>;
                             })}
                         </ul>

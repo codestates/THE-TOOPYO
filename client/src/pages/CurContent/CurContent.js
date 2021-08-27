@@ -1,60 +1,72 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-function CurContent(id) {
-    const [content, setContent] = useState({});
-    const [writer, setWriter] = useState({});
-    //      res = data: {
-    //  "content":
-    //     {
-    //       "title": "title",
-    //       "picture_1": "picture_1",
-    //       "picture_2": "picture_2",
-    //       "description": "description",
-    //       "voting_deadline": "votingDeadline",
-    //       "created_at": "created_at",
-    //       "update_at": "update_at"
-    //     },
-    //   "writer":
-    //     {
-    //     "id": 1,
-    //      "nickname": "방예은",
-    //      "profile_img": "profile_img",
-    //     }
-    //}
-    //
+function CurContent({ id, content, writer, auth }) {
+    const [isAuthOk, setIsAuthOk] = useState(false); // session id 를 보내고 인증이 완료되어 투표한 경우
+    const [isAuthNot, setIsAuthNot] = useState(false);
 
-    const getContentDetail = () => {
-        axios.get(`https://localhost:4000/content/:${id}`, { headers: { authorization: '' } }).then((res) => {
-            setContent(res.data.content);
-            setWriter(res.data.writer);
-        });
+    const isAuthOkHandler = () => {
+        setIsAuthOk(isAuthOk ? false : true);
+    };
+
+    const isAuthNotHandler = () => {
+        setIsAuthNot(isAuthNot ? false : true);
     };
 
     const getAgree = () => {
-        axios.get(`https://localhost:4000/content/agree/:${id}`);
+        axios.get(`https://localhost:4000/content/agree/:${id}`, { auth: auth.id }).then((res) => {
+            if (res.message === 'agree complete') return isAuthOkHandler();
+            else {
+                return isAuthNotHandler();
+            }
+        });
+    };
+
+    const getDisagree = () => {
+        axios.get(`https://localhost:4000/content/disagree/:${id}`, { auth: auth.id }).then((res) => {
+            if (res.message === 'disagree complete') return isAuthOkHandler();
+            else {
+                return isAuthNotHandler();
+            }
+        });
     };
 
     return (
         <div>
-            <div className="location">
-                Home <img id="" src=""></img> 현재 글
-            </div>
             <div className="content">
                 <h2>{content.title}</h2>
                 <button className="editContent"></button>
                 <button className="deleteContent"></button>
                 <div className="contentMain">
                     <div className="contentInner">
+                        {isAuthOk ? (
+                            <div className="alert authOk" onClick={isAuthOkHandler}>
+                                투표가 완료되었습니다.
+                            </div>
+                        ) : null}
+
+                        {isAuthNot ? (
+                            <div className="alert authNot" onClick={isAuthNotHandler}>
+                                로그인이 필요한 서비스입니다.
+                            </div>
+                        ) : null}
                         <ul>
                             <li>
-                                <img src={content.picture_1} alt={content.description} className="picture_1"></img>
+                                <img
+                                    src={content.picture_1}
+                                    alt={content.description}
+                                    className="picture_1"
+                                    onClick={getAgree}></img>
                             </li>
                             <li className="versus">
                                 <img src="" alt="versus"></img>
                             </li>
                             <li>
-                                <img src={content.picture_2} alt={content.description} className="picture_2"></img>
+                                <img
+                                    src={content.picture_2}
+                                    alt={content.description}
+                                    className="picture_2"
+                                    onClick={getDisagree}></img>
                             </li>
                         </ul>
                         <div className="contentInfo">
