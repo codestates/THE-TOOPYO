@@ -6,6 +6,7 @@ import Thumbnail from './components/Thumbnail';
 import axios from 'axios';
 import SignupPage from './pages/SignUp/SignUpPage';
 import CurContent from './pages/CurContent/CurContent';
+import NewContent from './pages/NewContent';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState(false);
@@ -46,6 +47,7 @@ export default function App() {
                     {/* <Route path="CurContent">
                         <CurContent></CurContent>
                     </Route> */}
+
                     <div>
                         <ul>
                             {contentList.map((list) => {
