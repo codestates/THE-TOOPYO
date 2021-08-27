@@ -3,7 +3,7 @@ import React from 'react';
 function SidebarItem({ menu }) {
     return (
         <div className="sidebar-item">
-            <p>{menu.name}</p>
+            <li>{menu.name}</li>
         </div>
     );
 }
