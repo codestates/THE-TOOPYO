@@ -13,8 +13,8 @@ module.exports = (sequelize, DataTypes) => {
     }
     agree.init(
         {
-            user_id: DataTypes.INTEGER,
-            content_id: DataTypes.INTEGER,
+            //user_id: DataTypes.INTEGER,
+            //content_id: DataTypes.INTEGER,
         },
         {
             sequelize,
