@@ -9,7 +9,7 @@ import CurContent from './pages/CurContent/CurContent';
 import Mypage from './pages/Mypage/Mypage';
 
 export default function App() {
-    const [isLogin, setIsLogin] = useState(false);
+    const [isLogin, setIsLogin] = useState();
     const [auth, setAuth] = useState('');
 
     const loginHandler = function (data) {
