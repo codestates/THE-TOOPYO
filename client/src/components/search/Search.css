@@ -23,7 +23,7 @@
     align-items: center;
     transition: all 0.125s;
     cursor: text;
-    padding: 1px 100px;
+    padding: 1px 10px;
     height: 2rem;
     position: absolute;
     left: 50%;
