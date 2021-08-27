@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     }
     content.init(
         {
-            user_id: DataTypes.STRING,
+            //user_id: DataTypes.INTEGER,
             title: DataTypes.STRING,
             picture_1: DataTypes.STRING,
             picture_2: DataTypes.STRING,
