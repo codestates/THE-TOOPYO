@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './LoginModal.css';
+import './Modal.css';
 
 function Login({ isOpen, close, loginHandler }) {
     const [loginInfo, setLoginInfo] = useState({
