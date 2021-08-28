@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import './Nav.css';
-import LoginButton from './modals/LoginBtn';
-import SignUpButton from './modals/SignUpBtn';
+import LoginButton from './Modals/LoginBtn';
+import SignUpButton from './Modals/SignUpBtn';
 import Sidebar from './SideBar/SideBar';
-import SearchButton from './search/SearchBtn';
+import SearchButton from './Search/SearchBtn';
 
 function Nav({ isLogin, loginHandler }) {
     return (
