@@ -41,9 +41,9 @@ app.post('/login', controllers.login);
 app.get('/signout', controllers.signOut);
 app.post('/signup', controllers.signUp);
 
-app.all('/user', controllers.userInfo);
+app.use('/user', controllers.userInfo);
 
-app.all('/content', controllers.content);
+app.use('/content', controllers.content);
 
 const PORT = 80;
 

@@ -1,4 +1,4 @@
-const { user } = require('../../models/user');
+const { user } = require('../../models');
 
 module.exports = (req, res) => {
     const { nickName, email, password, mobile, picture, provider } = req.body;
