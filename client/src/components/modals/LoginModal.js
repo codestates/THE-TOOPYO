@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './LoginModal.css';
+import './Modal.css';
 
 function Login({ isOpen, close, loginHandler }) {
     const [loginInfo, setLoginInfo] = useState({
@@ -38,7 +38,6 @@ function Login({ isOpen, close, loginHandler }) {
                         <button className="closeBtn" onClick={close}>
                             X
                         </button>
-
                         <div className="modalContents">
                             <span className="title">Login</span>
                             <input
@@ -60,7 +59,7 @@ function Login({ isOpen, close, loginHandler }) {
                             <button className="loginBtn" onClick={loginRequestHandler}>
                                 로그인
                             </button>
-                            <button className="kakaoBtn">
+                            <button className="kakaoBtn" href={process.env.KAKAO_AUTH_URL}>
                                 <img
                                     className="kakaoLogo"
                                     src="https://developers.kakao.com/tool/resource/static/img/button/kakaolink/kakaolink_btn_medium.png"

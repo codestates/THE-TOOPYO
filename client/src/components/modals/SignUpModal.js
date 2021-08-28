@@ -5,12 +5,12 @@ import { useHistory } from 'react-router-dom';
 
 function Signup({ isOpen, close, loginHandler }) {
     const [signupInfo, setSignupInfo] = useState({
-        picture: '',
+        profile_img: '',
         provider: '',
         nickName: '',
         email: '',
         password: '',
-        mobile: '',
+        phoneNumber: '',
     });
     const [errorMessage, setErrorMessage] = useState(false);
 
@@ -19,7 +19,7 @@ function Signup({ isOpen, close, loginHandler }) {
     const fileEvent = (e) => {
         const reader = new FileReader();
         reader.onload = () => {
-            setSignupInfo({ ...signupInfo, [e.target.name]: e.target.picture });
+            setSignupInfo({ ...signupInfo, [e.target.name]: e.target.profile_img });
             console.log('파일 업로드 완료.');
         };
         reader.readAsText(e.target.files[0]);
@@ -30,12 +30,12 @@ function Signup({ isOpen, close, loginHandler }) {
 
     const signUpRequestHandler = () => {
         if (
-            !signupInfo.picture ||
+            !signupInfo.profile_img ||
             !signupInfo.provider ||
             !signupInfo.nickName ||
             !signupInfo.email ||
             !signupInfo.password ||
-            !signupInfo.mobile
+            !signupInfo.phoneNumber
         ) {
             setErrorMessage(true);
         } else {
@@ -43,12 +43,12 @@ function Signup({ isOpen, close, loginHandler }) {
                 .post(
                     'https://localhost:4000/signup',
                     {
-                        picture: signupInfo.picture,
+                        profile_img: signupInfo.profile_img,
                         provider: signupInfo.provider,
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
                         password: signupInfo.password,
-                        mobile: signupInfo.mobile,
+                        phoneNumber: signupInfo.phoneNumber,
                     },
                     { 'Content-Type': 'application/json', withCredentials: true },
                 )
@@ -69,7 +69,7 @@ function Signup({ isOpen, close, loginHandler }) {
                         <form onSubmit={(e) => e.preventDefault()}>
                             <div className="modalContents">
                                 <img className="signUpIcon" />
-                                <h1>Sign Up</h1>
+                                <span className="title">Sign Up</span>
                                 <div>모든 항목은 필수입니다.</div>
                                 <input
                                     name="email"
@@ -96,21 +96,20 @@ function Signup({ isOpen, close, loginHandler }) {
                                     value={signupInfo.nickName}
                                 />
                                 <input
-                                    name="mobile"
+                                    name="phoneNumber"
                                     className="signUpMobile"
                                     type="tel"
                                     placeholder="-없이 숫자만 입력하세요"
                                     onChange={(e) => inputHandler(e)}
-                                    value={signupInfo.mobile}
+                                    value={signupInfo.phoneNumber}
                                 />
                                 <div className="profileUploader">프로필 사진을 선택하세요.</div>
                                 <input
-                                    name="picture"
+                                    name="profile_img"
                                     className="signUpPic"
                                     type="file"
-                                    placeholder="picture"
-                                    onChange={(e) => fileEvent(e)}
-                                    value={signupInfo.picture}
+                                    onChange={fileEvent}
+                                    value={signupInfo.profile_img}
                                 />
                                 <button className="signUpB" onClick={signUpRequestHandler}>
                                     {' '}

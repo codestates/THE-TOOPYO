@@ -1,32 +1,10 @@
-@media screen and (max-width: 768px) {
-    .back {
-        background: rgba(102, 102, 102, 0.5);
-    }
-
-    .sidebar {
-        float: right;
-        background-color: white;
-    }
-    .sidebarIcon {
-        display: none;
-        line-height: 16px;
-        text-align: center;
-        font-size: 14px;
-        margin-left: 8px;
-        border-radius: 50%;
-        background: #fff;
-        cursor: pointer;
-    }
-    .sidebarContents {
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-    .closeBtn {
-        float: right;
-        background-color: white;
-        font-size: 16px;
-        cursor: pointer;
-    }
+.sidebarBtn {
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    text-decoration: none;
+    padding-left: 0.5vh;
+    padding-right: 0.5vh;
+    background-color: rgba(255, 255, 255, 0);
 }
