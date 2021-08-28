@@ -32,6 +32,7 @@ export default function App() {
             <div className="app">
                 <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
+
                 <Switch>
                     {/* <Route path="/Mypage">
                         <Mypage></Mypage>
