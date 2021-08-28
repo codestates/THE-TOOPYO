@@ -9,14 +9,8 @@ function Login({ isOpen, close, loginHandler }) {
         password: '',
     });
 
-    const [isLoginOrSignupModalOn, setIsLoginOrSignupModalOn] = useState(false);
-
     const inputHandler = (e) => {
         setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
-    };
-
-    const handleLoginOrSignupModal = () => {
-        setIsLoginOrSignupModalOn(true);
     };
 
     const loginRequestHandler = () => {
@@ -30,7 +24,9 @@ function Login({ isOpen, close, loginHandler }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
-                if (res.message === 'ok') return loginHandler(true);
+                if (res.message === 'ok') {
+                    return loginHandler(res.cookies);
+                }
             })
             .catch((err) => alert(err));
     };

@@ -15,20 +15,21 @@ function Sidebar() {
     };
     return (
         <div className="sidebar">
-            <img
-                className="sidebarIcon"
-                src="https://developers.kakao.com/tool/resource/static/img/button/kakaolink/kakaolink_btn_medium.png"
-                onClick={sidebarHandler}
-            />
+            <div class="btn-menu">
+                <a class="a" onClick={sidebarHandler}>
+                    <svg width="30" height="38" viewBox="0 0 18 14" fill="none">
+                        <rect width="18" height="2" rx="1" fill="#ccc"></rect>{' '}
+                        <rect x="6" y="6" width="12" height="2" rx="1" fill="#ccc"></rect>
+                        <rect y="12" width="18" height="2" rx="1" fill="#ccc"></rect>
+                    </svg>
+                </a>
+            </div>
             {isOpen === true ? (
-                <div className="back" onClick={sidebarHandler}>
+                <div className="sidebarBack" onClick={sidebarHandler}>
                     <div className="sidebarContents">
-                        <span>
-                            {' '}
-                            <button className="closeBtn" onClick={sidebarHandler}>
-                                X
-                            </button>
-                        </span>
+                        <button className="sidebarCloseBtn" onClick={sidebarHandler}>
+                            X
+                        </button>
                         {menus.map((menu, index) => {
                             return (
                                 <Link to={menu.path} key={index}>

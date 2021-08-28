@@ -69,7 +69,7 @@ function Signup({ isOpen, close, loginHandler }) {
                         <form onSubmit={(e) => e.preventDefault()}>
                             <div className="modalContents">
                                 <img className="signUpIcon" />
-                                <h1>Sign Up</h1>
+                                <span className="title">Sign Up</span>
                                 <div>모든 항목은 필수입니다.</div>
                                 <input
                                     name="email"
