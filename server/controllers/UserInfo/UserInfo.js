@@ -51,6 +51,7 @@ module.exports = {
                     },
                 },
             );
+            //! 유저정보 필요없을수도있음
             const userInfo = await user.findOne({
                 where: {
                     email,

@@ -1,61 +1,51 @@
-const { content } = require('../../models');
-const { user } = require('../../models');
+const { content, user, agree, disagree, sequelize } = require('../../models');
 
 module.exports = {
     // 모든 게시물 보기입니다.
     allContent: async (req, res) => {
         try {
+            //! 찬성, 반대 같이 보내줘야함
             const contentData = await content.findAll({
-                include: user,
+                include: {
+                    model: user,
+                    attributes: ['nickName', 'profile_img'],
+                },
                 attributes: ['id', 'title', 'picture_1', 'picture_2', 'description', 'voting_deadline'],
             });
             res.status(200).json({ message: 'ok', content: contentData });
         } catch (err) {
-            console.log(new Error(err));
+            res.status(500).json({ message: 'server error' });
         }
     },
     // 특정 게시물 보기입니다.
+    // !누구나 볼수있게 할까 /// 찬성, 반대 추가 보내줘야헤
     detailContent: async (req, res) => {
         try {
             const { id } = req.params;
-            const { email } = req.body;
+            const { email } = req.body; //! session
+            const agreeCount = await agree.findAll({ where: { contentId: id } });
+            const disagreeCount = await disagree.findAll({ where: { contentId: id } });
             if (email !== undefined) {
-                const findContent = await content.findOne({
-                    where: {
-                        id,
-                    },
-                });
-                const findUser = await user.findOne({
-                    where: {
-                        id: findContent.userId,
-                    },
-                });
-                res.status(200).json({
-                    message: 'ok',
-                    data: {
-                        content: {
-                            title: findContent.title,
-                            picture_1: findContent.picture_1,
-                            picture_2: findContent.picture_2,
-                            description: findContent.description,
-                            voting_deadline: findContent.voting_deadline,
-                            createdAt: findContent.createdAt,
-                            updateAt: findContent.updatedAt,
+                const contentDetail = await content.findOne({
+                    where: { id },
+                    include: [
+                        {
+                            model: user,
+                            attributes: ['nickName', 'profile_img'],
                         },
-                        writer: {
-                            id: findUser.id,
-                            nickName: findUser.nickName,
-                            profile_img: findUser.profile_img,
-                        },
-                    },
+                    ],
+                    attributes: ['id', 'title', 'picture_1', 'picture_2', 'description', 'voting_deadline'],
                 });
+                console.log(contentDetail);
+                res.status(200).json({ message: 'ok', content: contentDetail });
             } else {
                 res.status(404).json({
                     message: 'Content Not Found',
                 });
             }
         } catch (err) {
-            console.log(new Error(err));
+            console.log(err);
+            res.status(500).json({ message: 'server error' });
         }
     },
 

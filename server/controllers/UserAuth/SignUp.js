@@ -13,6 +13,6 @@ module.exports = async (req, res) => {
             res.status(404).json({ message: 'please, rewrite' });
         }
     } catch (err) {
-        console.log(new Error(err));
+        res.status(500).json({ message: 'server error' });
     }
 };
