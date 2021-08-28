@@ -12,12 +12,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
     cors({
         origin: true,
+        // 'the-toopyo.com'
         credentials: true,
         methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     }),
 );
 
-app.use(cookieParser());
+//app.use(cookieParser());
 app.use(
     session({
         secret: 'thetoopyo',
@@ -33,7 +34,6 @@ app.use(
         },
     }),
 );
-
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
