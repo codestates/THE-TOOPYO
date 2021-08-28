@@ -12,7 +12,6 @@ function Signup({ isOpen, close, loginHandler }) {
         password: '',
         phoneNumber: '',
     });
-    const [errorMessage, setErrorMessage] = useState(false);
 
     const history = useHistory();
 
@@ -24,6 +23,7 @@ function Signup({ isOpen, close, loginHandler }) {
         };
         reader.readAsText(e.target.files[0]);
     };
+
     const inputHandler = (e) => {
         setSignupInfo({ ...signupInfo, [e.target.name]: e.target.value });
     };
@@ -37,7 +37,6 @@ function Signup({ isOpen, close, loginHandler }) {
             !signupInfo.password ||
             !signupInfo.phoneNumber
         ) {
-            setErrorMessage(true);
         } else {
             axios
                 .post(
