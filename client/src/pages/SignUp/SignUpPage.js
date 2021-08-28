@@ -114,7 +114,7 @@ function SignupPage() {
                                 className="signUpPic"
                                 type="file"
                                 placeholder="picture"
-                                onChange={(e) => fileEvent(e)}
+                                onChange={fileEvent}
                                 value={signupInfo.picture}
                             />
                             <button className="signUpB" onClick={signUpRequestHandler}>
