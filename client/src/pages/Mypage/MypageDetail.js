@@ -45,7 +45,7 @@ export default function MypageDetail(props) {
                     phone: patchInfo.phone,
                 },
                 { 'Content-Type': 'application/json', withCredentials: true },
-            ); // 또 뭐 담아야하징
+            ); // 또 뭐 담아야하징 헤더 auth?
         }
     };
 
