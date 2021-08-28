@@ -5,7 +5,7 @@ import { useHistory } from 'react-router-dom';
 
 function Signup({ isOpen, close, loginHandler }) {
     const [signupInfo, setSignupInfo] = useState({
-        picture: '',
+        profile_img: '',
         provider: '',
         nickName: '',
         email: '',
@@ -19,7 +19,7 @@ function Signup({ isOpen, close, loginHandler }) {
     const fileEvent = (e) => {
         const reader = new FileReader();
         reader.onload = () => {
-            setSignupInfo({ ...signupInfo, [e.target.name]: e.target.picture });
+            setSignupInfo({ ...signupInfo, [e.target.name]: e.target.profile_img });
             console.log('파일 업로드 완료.');
         };
         reader.readAsText(e.target.files[0]);
@@ -30,7 +30,7 @@ function Signup({ isOpen, close, loginHandler }) {
 
     const signUpRequestHandler = () => {
         if (
-            !signupInfo.picture ||
+            !signupInfo.profile_img ||
             !signupInfo.provider ||
             !signupInfo.nickName ||
             !signupInfo.email ||
@@ -43,7 +43,7 @@ function Signup({ isOpen, close, loginHandler }) {
                 .post(
                     'https://localhost:4000/signup',
                     {
-                        picture: signupInfo.picture,
+                        profile_img: signupInfo.profile_img,
                         provider: signupInfo.provider,
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
@@ -105,12 +105,11 @@ function Signup({ isOpen, close, loginHandler }) {
                                 />
                                 <div className="profileUploader">프로필 사진을 선택하세요.</div>
                                 <input
-                                    name="picture"
+                                    name="profile_img"
                                     className="signUpPic"
                                     type="file"
-                                    placeholder="picture"
                                     onChange={fileEvent}
-                                    value={signupInfo.picture}
+                                    value={signupInfo.profile_img}
                                 />
                                 <button className="signUpB" onClick={signUpRequestHandler}>
                                     {' '}

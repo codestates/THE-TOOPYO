@@ -3,14 +3,14 @@ import axios from 'axios';
 import './Mypage.css';
 
 export default function MypageDetail(props) {
-    const info = props.userInfo;
+    const info = props.data.userInfo;
     const [isClick, setIsClick] = useState(false);
     const [patchInfo, setPatchInfo] = useState({
         nickName: '',
         email: '',
         password: '',
         profile_img: '',
-        phone: '',
+        phone: '', // 초기값에 info.data.userInfo
     });
     const clickHandler = () => {
         setIsClick(!isClick);
@@ -35,7 +35,7 @@ export default function MypageDetail(props) {
             !patchInfo.phone
         ) {
         } else {
-            axios.post(
+            axios.patch(
                 'https://localhost:4000/user/:id',
                 {
                     nickName: patchInfo.nickName,
@@ -45,7 +45,7 @@ export default function MypageDetail(props) {
                     phone: patchInfo.phone,
                 },
                 { 'Content-Type': 'application/json', withCredentials: true },
-            );
+            ); // 또 뭐 담아야하징
         }
     };
 
@@ -116,7 +116,7 @@ export default function MypageDetail(props) {
                 </form>
             ) : (
                 <div>
-                    <h1>안녕하세요 info.name님</h1>
+                    <h1>안녕하세요 info.nickName님</h1>
                     <div className="pfArea">
                         <a className="pfImg">
                             <div className="label">프로필 사진</div>
