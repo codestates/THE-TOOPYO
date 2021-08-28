@@ -2,7 +2,6 @@ const { user } = require('../../models');
 
 module.exports = async (req, res) => {
     const { nickName, email, password, phoneNumber, profile_img, provider } = req.body;
-
     try {
         const userCheck = await user.findOne({ where: { email: email } });
         if (userCheck) {

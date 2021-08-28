@@ -7,7 +7,17 @@ const express = require('express');
 const app = express();
 
 const controllers = require('./controllers');
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(
+    cors({
+        origin: true,
+        credentials: true,
+        methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
+    }),
+);
 
+app.use(cookieParser());
 app.use(
     session({
         secret: 'thetoopyo',
@@ -23,6 +33,7 @@ app.use(
         },
     }),
 );
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,10 +56,10 @@ app.use('/user', controllers.userInfo);
 
 app.use('/content', controllers.content);
 
-const HTTPS_PORT = 80;
+const PORT = 80;
 
-app.listen(HTTPS_PORT, () => {
+const server = app.listen(PORT, () => {
     console.log('열려라 서버!');
 });
 
-module.exports = app;
+module.exports = server;
