@@ -10,7 +10,7 @@ function SignupPage() {
         nickName: '',
         email: '',
         password: '',
-        mobile: '',
+        phoneNumber: '',
     });
     const [errorMessage, setErrorMessage] = useState(false);
     const [isLogin, setIsLogin] = useState({
@@ -41,7 +41,7 @@ function SignupPage() {
             !signupInfo.nickName ||
             !signupInfo.email ||
             !signupInfo.password ||
-            !signupInfo.mobile
+            !signupInfo.phoneNumber
         ) {
             setErrorMessage(true);
         } else {
@@ -54,7 +54,7 @@ function SignupPage() {
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
                         password: signupInfo.password,
-                        mobile: signupInfo.mobile,
+                        phoneNumber: signupInfo.mobile,
                     },
                     { 'Content-Type': 'application/json', withCredentials: true },
                 )
@@ -101,12 +101,12 @@ function SignupPage() {
                                 value={signupInfo.nickName}
                             />
                             <input
-                                name="mobile"
+                                name="phoneNumber"
                                 className="signUpMobile"
                                 type="tel"
                                 placeholder="-없이 숫자만 입력하세요"
                                 onChange={(e) => inputHandler(e)}
-                                value={signupInfo.mobile}
+                                value={signupInfo.phoneNumber}
                             />
                             <div className="profileUploader">프로필 사진을 선택하세요.</div>
                             <input

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Search from '../search/Search';
+import Search from '../Search/Search';
 import './Search.css';
 
 function SearchButton() {
