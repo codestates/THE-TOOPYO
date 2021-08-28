@@ -15,16 +15,24 @@ function Thumbnail({ list }) {
     };
 
     return (
-        <Link to="/CurContent">
-            <CurContent id={list.id} writer={writer} content={content}>
-                <div onClick={getContentDetail}>
-                    <h1>{list.title}title</h1>
-                    <img className="picture_1" src={list.picture_1}></img>
-                    <img className="picture_2" src={list.picture_2}></img>
-                    <div className="descript">{list.description}</div>
-                </div>
-            </CurContent>
-        </Link>
+        <div>
+            <h1>title</h1>
+            <div className="picture_1"></div>
+            <div className="picture_2"></div>
+            <div className="descript">
+                alsxmdetjfdualkfdkfbvfbfbfgfalsxmdetjfdualkfdkfbvfbfbfgfalsxmdetjfdualkfdkfbvfbfbfgfalsxmdetjfdualkfdkfbvfbfbfgfalsxmdetjfdualkfdkfbvfbfbfgfalsxmdetjfdualkfdkfbvfbfbfgf
+            </div>
+        </div>
+        // <Link to="/CurContent">
+        //     <CurContent id={list.id} writer={writer} content={content}>
+        //         <div onClick={getContentDetail}>
+        //             <h1>{list.title}title</h1>
+        //             <img className="picture_1" src={list.picture_1}></img>
+        //             <img className="picture_2" src={list.picture_2}></img>
+        //             <div className="descript">{list.description}</div>
+        //         </div>
+        //     </CurContent>
+        // </Link>
     );
 }
 
