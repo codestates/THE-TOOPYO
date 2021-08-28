@@ -4,12 +4,8 @@ const { content } = require('../../models');
 module.exports = {
     // 내정보 입니다.
     mypage: async (req, res) => {
-        //쿠키를 받아
-        //해독해
-        //해독한 값과 파인드원 한 값이 똑같은 데이터를 가져와
-        //값이 똑같은 사람이 쓴 글들의 데이터도 가져와
         const { email } = req.body;
-        if (req.body !== undefined) {
+        if (email !== undefined) {
             const findUser = await user.findOne({
                 where: {
                     email,
@@ -34,29 +30,30 @@ module.exports = {
     },
     // 내정보 수정입니다.
     retouchMypage: async (req, res) => {
-        const { id } = req.params;
+        //! 나중에 session으로 바꿔야함
+        const { nickName, email, phoneNumber, profile_img } = req.body;
         const finduser = await user.findOne({
             where: {
-                id,
+                email,
             },
         });
-        if (req.body.email === finduser.email) {
+        if (email === finduser.email) {
             await user.update(
                 {
-                    nickName: req.body.nickName,
-                    email: req.body.email,
-                    phoneNumber: req.body.phoneNumber,
-                    profile_img: req.body.profile_img,
+                    nickName,
+                    email,
+                    phoneNumber,
+                    profile_img,
                 },
                 {
                     where: {
-                        id,
+                        email,
                     },
                 },
             );
             const userInfo = await user.findOne({
                 where: {
-                    id,
+                    email,
                 },
             });
             res.status(200).json({
