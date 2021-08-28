@@ -14,7 +14,9 @@ function LoginButton() {
 
     return (
         <>
-            <button onClick={openModal}>로그인</button>
+            <button className="modalBtn" onClick={openModal}>
+                로그인
+            </button>
             <Login isOpen={isModalOpen} close={closeModal} open={openModal} />
         </>
     );

@@ -1,3 +1,19 @@
+.modalBtn {
+    height: 3vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    border-radius: 2vw;
+    border: none;
+    outline: none;
+    font-size: 1.5vw;
+    font-weight: bold;
+    word-break: keep-all;
+    background-color: #ccc;
+    color: #060a7d;
+    transition: all 0.125s;
+    cursor: pointer;
+}
+
 .modal {
     position: fixed;
     top: 0;
