@@ -23,6 +23,7 @@ function NewContent() {
     };
 
     const uploadHandler = () => {
+        //if()
         axios
             .post('https://localhost:4000/content', {
                 userId: '',
@@ -38,18 +39,32 @@ function NewContent() {
     };
 
     return (
-        <div>
+        <div id="inner">
+            <h1 id="newTitle">새 글 작성</h1>
             <form action="" method="post">
                 {/*action="데이터보낼 서버의 파일"*/}
-                <input className="title" maxlength="20" autoFocus required placeholder="제목을 입력하세요"></input>
+                <input
+                    className="title"
+                    maxlength="20"
+                    autoFocus
+                    required
+                    placeholder="제목을 입력하세요"
+                    onChange={handleInputValue}></input>
                 <button type="submit" onClick={uploadHandler}>
-                    <img src="./NewSubmitBtn" id="NewSubmit"></img>
+                    <img
+                        src="https://cdn.discordapp.com/attachments/877171336508739646/880754762616819732/NewSubmitBtn.png"
+                        id="NewSubmit"></img>
                 </button>
                 <div className="NewContentFrame">
-                    <input id="pic_1" type="file"></input>
-                    <label for="uploadPic_1">uploading </label>
-                    <progress id="uploadPic_1" max="100"></progress>
-                    <input id="pic_2" type="file"></input>
+                    <div className="pic Left">
+                        <img className="picBg"></img>
+                        <input id="pic_1" type="file"></input>
+                    </div>
+                    {/* <progress id="uploadPic_1" max="100"></progress> */}
+                    <div className="pic Right">
+                        <img className="picBg" src=""></img>
+                        <input id="pic_2" type="file"></input>
+                    </div>
                     <input className="NewDesc" type="text" placeholder="설명을 입력해주세요."></input>
                 </div>
             </form>

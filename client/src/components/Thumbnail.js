@@ -18,7 +18,7 @@ function Thumbnail({ list }) {
         <Link to="/CurContent">
             <CurContent id={list.id} writer={writer} content={content}>
                 <div onClick={getContentDetail}>
-                    <h1>{list.title}</h1>
+                    <h1>{list.title}title</h1>
                     <img className="picture_1" src={list.picture_1}></img>
                     <img className="picture_2" src={list.picture_2}></img>
                     <div className="descript">{list.description}</div>
