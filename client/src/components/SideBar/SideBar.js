@@ -16,11 +16,11 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div class="btn-menu">
-                <a class="a" onClick={sidebarHandler}>
-                    <svg width="30" height="38" viewBox="0 0 18 14" fill="none">
-                        <rect width="18" height="2" rx="1" fill="#ccc"></rect>{' '}
-                        <rect x="6" y="6" width="12" height="2" rx="1" fill="#ccc"></rect>
-                        <rect y="12" width="18" height="2" rx="1" fill="#ccc"></rect>
+                <a class="sidebarBtn" onClick={sidebarHandler}>
+                    <svg width="4vh" height="4vw" viewBox="0 0 18 14" fill="none">
+                        <rect y="0.3vh" width="4.5vh" height="0.15vw" fill="#ccc"></rect>{' '}
+                        <rect x="0.7vh" y="1.2vh" width="3vh" height="0.15vw" fill="#ccc"></rect>
+                        <rect y="2.0vh" width="4.5vh" height="0.15vw" fill="#ccc"></rect>
                     </svg>
                 </a>
             </div>
