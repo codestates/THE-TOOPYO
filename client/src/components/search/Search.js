@@ -9,7 +9,7 @@ export default function Search({ isOpen, close }) {
             return el.data.nickName.indexOf(searchKeyword) > -1;
         });
         return data.map((list) => {
-            return <Thumbnail searchRefresh={searchRefresh} list={list} />;
+            return <Thumbnail list={list} />;
         });
     };
     // 컨텐츠리스트를 데이터로 받아서 그걸 필터하고 맵걸어서 썸네일에 그 값을 넣어 출력하는 함수
