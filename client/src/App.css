@@ -2,6 +2,13 @@
     text-align: center;
 }
 
+@media screen and (min-width: 769px) {
+    .App {
+        width: 62.5vw;
+        margin: auto;
+    }
+}
+
 .App img {
     vertical-align: middle;
 }

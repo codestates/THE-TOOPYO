@@ -6,7 +6,7 @@ import { Link, useHistory } from 'react-router-dom';
 function SignupPage() {
     const [signupInfo, setSignupInfo] = useState({
         picture: '',
-        provider: '',
+        provider: 'origin',
         nickName: '',
         email: '',
         password: '',
@@ -36,7 +36,7 @@ function SignupPage() {
 
     const signUpRequestHandler = () => {
         if (
-            !signupInfo.picture ||
+            // !signupInfo.picture ||
             !signupInfo.provider ||
             !signupInfo.nickName ||
             !signupInfo.email ||
@@ -44,23 +44,26 @@ function SignupPage() {
             !signupInfo.phoneNumber
         ) {
             setErrorMessage(true);
+            console.log(signupInfo);
         } else {
+            console.log(signupInfo);
             axios
                 .post(
-                    'https://localhost:4000/signup',
+                    'http://localhost:80/signup',
                     {
-                        picture: signupInfo.picture,
+                        profile_img: 'signupInfo.picture',
                         provider: signupInfo.provider,
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
                         password: signupInfo.password,
-                        phoneNumber: signupInfo.mobile,
+                        phoneNumber: signupInfo.phoneNumber,
                     },
                     { 'Content-Type': 'application/json', withCredentials: true },
                 )
                 .then((res) => {
                     history.push('/');
                     if (res.message === 'ok') return loginHandler(true);
+                    console.log('eeeeeee');
                 });
         }
     };
