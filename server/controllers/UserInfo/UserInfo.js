@@ -38,30 +38,39 @@ module.exports = {
             },
         });
         if (email === finduser.email) {
-            await user.update(
-                {
+            const findNickname = await user.findOne({
+                where: {
                     nickName,
-                    email,
-                    phoneNumber,
-                    profile_img,
                 },
-                {
+            });
+            if (!findNickname) {
+                await user.update(
+                    {
+                        nickName,
+                        email,
+                        phoneNumber,
+                        profile_img,
+                    },
+                    {
+                        where: {
+                            email,
+                        },
+                    },
+                );
+                const userInfo = await user.findOne({
                     where: {
                         email,
                     },
-                },
-            );
-            const userInfo = await user.findOne({
-                where: {
-                    email,
-                },
-            });
-            res.status(200).json({
-                message: 'ok',
-                data: {
-                    userInfo: userInfo,
-                },
-            });
+                });
+                res.status(200).json({
+                    message: 'ok',
+                    data: {
+                        userInfo: userInfo,
+                    },
+                });
+            } else {
+                res.status(400).json({ message: 'Bad Request' });
+            }
         } else {
             res.status(400).json({ message: 'Bad Request' });
         }
