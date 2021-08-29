@@ -1,0 +1,64 @@
+#inner {
+    width: 70vw;
+    /* border: 1px solid red; */
+    margin: auto;
+    text-align: center;
+}
+
+#mainBanner {
+    width: 70vw;
+    height: 300px;
+    background-color: bisque;
+}
+
+.app-thumb-entire {
+    width: 70vw;
+    margin: auto;
+    padding-top: 2vw;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.container {
+    width: 19.43vw;
+    height: 42.5vw;
+    border: 1px solid #ccc;
+    flex: 1 1 30%;
+}
+
+/* .container:nth-child(n + 3) {
+    border-right: none;
+}
+
+.container:nth-child(3n + 3) {
+    border-left: none;
+} */
+
+.thumbTitle {
+    font-size: 1.56vw;
+    overflow: scroll;
+    margin-top: 0.8vw;
+}
+
+.picture_1,
+.picture_2 {
+    width: 18vw;
+    height: 15vw;
+    border: 1px solid #ccc;
+    margin: 0.8vw auto;
+}
+
+.descript {
+    border: 1px solid #ccc;
+    width: 18vw;
+    height: 4vw;
+    margin: auto;
+    text-align: left;
+    overflow: scroll;
+}
+
+span {
+    font-size: 1.3;
+    font-weight: 700;
+}
