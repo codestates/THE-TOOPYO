@@ -5,29 +5,13 @@ module.exports = {
     // 모든 게시물 보기입니다.
     allContent: async (req, res) => {
         try {
-            let contentUserList = await sequelize.query(
-                `
-                SELECT contents.userId, contents.title, contents.picture_1, contents.picture_2, contents.description,contents.voting_deadline, users.nickName, users.profile_img, COUNT(agrees.userId) AS agree,  COUNT(disagrees.userId) AS disagree FROM contents
-                LEFT JOIN agrees ON contents.id = agrees.contentId
-                LEFT JOIN disagrees ON disagrees.contentId = contents.id
-                JOIN users ON contents.userId = users.id
-                WHERE contents.id = ${id};
-                `,
-                { type: QueryTypes.SELECT },
-            );
-            console.log(contentUserList);
-
-            //! 찬성, 반대 같이 보내줘야함
-            // const contentData = await content.findAll({
-            //     include: {
-            //         model: user,
-            //         attributes: ['nickName', 'profile_img'],
-            //     },
-            //     attributes: ['id', 'title', 'picture_1', 'picture_2', 'description', 'voting_deadline'],
-            // });
-            // res.status(200).json({ message: 'ok', content: contentData });
+            const contentData = await content.findAll({
+                include: user,
+                attributes: ['id', 'title', 'picture_1', 'picture_2', 'description', 'voting_deadline'],
+            });
+            res.status(200).json({ message: 'ok', content: contentData });
         } catch (err) {
-            res.status(500).json({ message: 'server error' });
+            console.log(new Error(err));
         }
     },
     // 특정 게시물 보기입니다.
