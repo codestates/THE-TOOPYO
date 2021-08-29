@@ -15,7 +15,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const getAgree = () => {
-        axios.get(`https://localhost:4000/content/agree/:${id}`, { auth: auth.id }).then((res) => {
+        axios.get(`https://localhost:80/content/agree/:${id}`, { auth: auth.id }).then((res) => {
             if (res.message === 'agree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -24,7 +24,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const getDisagree = () => {
-        axios.get(`https://localhost:4000/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.get(`https://localhost:80/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
             if (res.message === 'disagree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -33,7 +33,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const deleteContent = () => {
-        axios.delete(`https://localhost:4000/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.delete(`https://localhost:80/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
             if (res.message === 'delete complete') {
                 isAuthOkHandler();
             } else {
