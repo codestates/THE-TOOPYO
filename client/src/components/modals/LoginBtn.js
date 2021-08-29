@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Login from './LoginModal';
 
-function LoginButton() {
+function LoginButton({ loginHandler }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -14,8 +14,10 @@ function LoginButton() {
 
     return (
         <>
-            <button onClick={openModal}>로그인</button>
-            <Login isOpen={isModalOpen} close={closeModal} open={openModal} />
+            <button className="modalBtn" onClick={openModal}>
+                로그인
+            </button>
+            <Login isOpen={isModalOpen} close={closeModal} open={openModal} loginHandler={loginHandler} />
         </>
     );
 }

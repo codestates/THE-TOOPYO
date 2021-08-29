@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import SidebarItem from './Sidebaritem';
 import './SideBar.css';
+import SignUpButton from '../Modals/SignUpBtn';
 
 function Sidebar() {
     const menus = [
@@ -16,11 +17,11 @@ function Sidebar() {
     return (
         <div className="sidebar">
             <div class="btn-menu">
-                <a class="a" onClick={sidebarHandler}>
-                    <svg width="30" height="38" viewBox="0 0 18 14" fill="none">
-                        <rect width="18" height="2" rx="1" fill="#ccc"></rect>{' '}
-                        <rect x="6" y="6" width="12" height="2" rx="1" fill="#ccc"></rect>
-                        <rect y="12" width="18" height="2" rx="1" fill="#ccc"></rect>
+                <a class="sidebarBtn" onClick={sidebarHandler}>
+                    <svg width="4vh" height="4vw" viewBox="0 0 18 14" fill="none">
+                        <rect y="0.1vh" width="4.5vh" height="0.25vw" fill="white"></rect>
+                        <rect x="0.6vh" y="1.25vh" width="3vh" height="0.25vw" fill="white"></rect>
+                        <rect y="2.4vh" width="4.5vh" height="0.25vw" fill="white"></rect>
                     </svg>
                 </a>
             </div>

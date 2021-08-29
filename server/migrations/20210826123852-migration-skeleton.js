@@ -13,7 +13,7 @@ module.exports = {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         });
-        await queryInterface.addConstraint('agree', {
+        await queryInterface.addConstraint('agrees', {
             fields: ['userId'],
             type: 'foreign key',
             name: 'agrees_ibfk_1',
@@ -24,7 +24,7 @@ module.exports = {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         });
-        await queryInterface.addConstraint('agree', {
+        await queryInterface.addConstraint('agrees', {
             fields: ['contentId'],
             type: 'foreign key',
             name: 'agrees_ibfk_2',
@@ -35,7 +35,7 @@ module.exports = {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         });
-        await queryInterface.addConstraint('disagree', {
+        await queryInterface.addConstraint('disagrees', {
             fields: ['userId'],
             type: 'foreign key',
             name: 'disagrees_ibfk_1',
@@ -46,7 +46,7 @@ module.exports = {
             onDelete: 'cascade',
             onUpdate: 'cascade',
         });
-        await queryInterface.addConstraint('disagree', {
+        await queryInterface.addConstraint('disagrees', {
             fields: ['contentId'],
             type: 'foreign key',
             name: 'disagrees_ibfk_2',
@@ -62,9 +62,9 @@ module.exports = {
     down: async (queryInterface, Sequelize) => {
         await queryInterface.removeConstraint('contents', 'disagrees_ibfk_1');
         await queryInterface.removeConstraint('contents', 'disagrees_ibfk_2');
-        await queryInterface.removeConstraint('agree', 'agrees_ibfk_1');
-        await queryInterface.removeConstraint('agree', 'agrees_ibfk_2');
-        await queryInterface.removeConstraint('disagree', 'fk_disagree_content');
-        await queryInterface.removeConstraint('disagree', 'fk_disagree_user');
+        await queryInterface.removeConstraint('agrees', 'agrees_ibfk_1');
+        await queryInterface.removeConstraint('agrees', 'agrees_ibfk_2');
+        await queryInterface.removeConstraint('disagrees', 'fk_disagree_content');
+        await queryInterface.removeConstraint('disagrees', 'fk_disagree_user');
     },
 };

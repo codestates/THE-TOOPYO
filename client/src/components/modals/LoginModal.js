@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './LoginModal.css';
+import './Modal.css';
 
 function Login({ isOpen, close, loginHandler }) {
     const [loginInfo, setLoginInfo] = useState({
@@ -16,7 +16,7 @@ function Login({ isOpen, close, loginHandler }) {
     const loginRequestHandler = () => {
         axios
             .post(
-                'https://localhost:4000/login',
+                'http://localhost:80/login',
                 {
                     email: loginInfo.email,
                     password: loginInfo.password,
@@ -24,6 +24,7 @@ function Login({ isOpen, close, loginHandler }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
+                console.log(res);
                 if (res.message === 'ok') {
                     return loginHandler(res.cookies);
                 }
@@ -38,7 +39,6 @@ function Login({ isOpen, close, loginHandler }) {
                         <button className="closeBtn" onClick={close}>
                             X
                         </button>
-
                         <div className="modalContents">
                             <span className="title">Login</span>
                             <input
@@ -60,7 +60,7 @@ function Login({ isOpen, close, loginHandler }) {
                             <button className="loginBtn" onClick={loginRequestHandler}>
                                 로그인
                             </button>
-                            <button className="kakaoBtn">
+                            <button className="kakaoBtn" href={process.env.KAKAO_AUTH_URL}>
                                 <img
                                     className="kakaoLogo"
                                     src="https://developers.kakao.com/tool/resource/static/img/button/kakaolink/kakaolink_btn_medium.png"

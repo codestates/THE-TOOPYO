@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import Thumbnail from '../../components/Thumbnail';
+import Thumbnail from '../../components/Thumbnail/Thumbnail';
 
 export default function Mycontent(props) {
     const info = props.userInfo;
@@ -15,6 +15,7 @@ export default function Mycontent(props) {
     const filteredContents = contentList.filter((el) => {
         return el.writer.id === info.nickName;
     });
+    getContentList();
     return (
         <>
             <h1>안녕하세요 info.name님</h1>
