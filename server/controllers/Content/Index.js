@@ -10,9 +10,10 @@ content.post('/', createContent);
 content.patch('/:id', retouchContent);
 content.delete('/:id', deleteContent);
 
-content.get('deadline/:id', close);
+content.patch('/deadline/:id', close);
 
-content.get('agree/:id', agree);
-content.get('disagree/:id', disagree);
+//! 나중에 get으로 변경
+content.post('/agree/:id', agree);
+content.post('/disagree/:id', disagree);
 
 module.exports = content;

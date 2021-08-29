@@ -1,14 +1,70 @@
+const { user } = require('../../models');
+const { content } = require('../../models');
+
 module.exports = {
     // 내정보 입니다.
-    mypage: (req, res) => {
-        //쿠키를 받아
-        //해독해
-        //해독한 값과 파인드원 한 값이 똑같은 데이터를 가져와
-        //값이 똑같은 사람이 쓴 글들의 데이터도 가져와
-        if (req.session !== undefined) {
-            res.status(200).json();
+    mypage: async (req, res) => {
+        const { email } = req.body;
+        if (email !== undefined) {
+            const findUser = await user.findOne({
+                where: {
+                    email,
+                },
+            });
+            const { id } = findUser;
+            const findcontent = await content.findAll({
+                where: {
+                    userId: id,
+                },
+            });
+            res.status(200).json({
+                message: 'ok',
+                data: {
+                    content: findcontent,
+                    userInfo: findUser,
+                },
+            });
+        } else {
+            res.status(404).json({ message: 'Bad Request' });
         }
     },
     // 내정보 수정입니다.
-    retouchMypage: (req, res) => {},
+    retouchMypage: async (req, res) => {
+        //! 나중에 session으로 바꿔야함
+        const { nickName, email, phoneNumber, profile_img } = req.body;
+        const finduser = await user.findOne({
+            where: {
+                email,
+            },
+        });
+        if (email === finduser.email) {
+            await user.update(
+                {
+                    nickName,
+                    email,
+                    phoneNumber,
+                    profile_img,
+                },
+                {
+                    where: {
+                        email,
+                    },
+                },
+            );
+            //! 유저정보 필요없을수도있음
+            const userInfo = await user.findOne({
+                where: {
+                    email,
+                },
+            });
+            res.status(200).json({
+                message: 'ok',
+                data: {
+                    userInfo: userInfo,
+                },
+            });
+        } else {
+            res.status(400).json({ message: 'Bad Request' });
+        }
+    },
 };
