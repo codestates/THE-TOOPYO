@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../../pages/SignUp/SignUp.css';
+import '../../pages/signUp/SignUp.css';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import Mycontent from '../../pages/Mypage/Mycontent';
-import MypageDetail from '../../pages/Mypage/MypageDetail';
+import Mycontent from '../../pages/mypage/Mycontent';
+import MypageDetail from '../../pages/mypage/MypageDetail';
 
 const TabMenu = styled.ul`
     background-color: rgba(102, 102, 102, 0);
