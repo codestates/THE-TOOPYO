@@ -4,31 +4,31 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CurContent from '../../pages/CurContent/CurContent';
 
-function Thumbnail({ list }) {
+function Thumbnail({ list, auth }) {
     const [content, setContent] = useState({}); // 게시글 정보
     const [writer, setWriter] = useState({}); // 작성자 정보
 
     const getContentDetail = () => {
         axios.get(`https://localhost:80/content/:${list.id}`).then((res) => {
-            console.log(res.data);
+            //console.log(res.data);
             setContent(res.data.content);
             setWriter(res.data.writer);
+            return <CurContent auth={auth} content={content} writer={writer} id={list.id}></CurContent>;
         });
     };
 
     return (
-        <div className="app-thumb-entire">
-            <Link to="/curcontent">
-                <CurContent id={list.id} writer={writer} content={content}>
-                    <div className="container" onClick={getContentDetail}>
-                        <h1 className="thumbTitle">{list.title}title</h1>
-                        <img className="picture_1" src={list.picture_1}></img>
-                        <span>vs</span>
-                        <img className="picture_2" src={list.picture_2}></img>
-                        <div className="descript">{list.description}</div>
-                    </div>
-                </CurContent>
-            </Link>
+        <div>
+            <div className="container" onClick={getContentDetail}>
+                <h1 className="thumbTitle">{list.title}title</h1>
+                <img className="picture_1" src={list.picture_1}></img>
+                <img
+                    id="versus"
+                    src="https://cdn.discordapp.com/attachments/881710985335934979/881711027425787914/vs.png"
+                    alt="versus"></img>
+                <img className="picture_2" src={list.picture_2}></img>
+                <div className="descript">{list.description}</div>
+            </div>
         </div>
     );
 }

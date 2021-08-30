@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, useParams } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, useParams, Link } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Thumbnail from './components/Thumbnail/Thumbnail';
 import axios from 'axios';
@@ -35,14 +35,22 @@ export default function App() {
             <div className="app">
                 <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
+
                 <Switch>
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/NewContent" component={NewContent} />
+                    <Route path="/CurContent" component={CurContent} />
                     <Route exact path="/">
-                        {contentList.map((list) => {
-                            return <Thumbnail list={list}></Thumbnail>;
-                        })}
+                        <div className="app-thumb-entire">
+                            {contentList.map((list) => {
+                                return (
+                                    <Link to="/CurContent">
+                                        <Thumbnail list={list} auth={auth}></Thumbnail>
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </Route>
                     ;
                 </Switch>
