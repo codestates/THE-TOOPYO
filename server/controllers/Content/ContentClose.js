@@ -5,7 +5,7 @@ module.exports = {
     // 투표종료입니다.
     close: async (req, res) => {
         try {
-            const findUser = await user.findOne({ where: { email: req.body.email } }); //! 나중에 req.session.emaiil로 변경해야함
+            const findUser = await user.findOne({ where: { email: req.body.session } }); //! 나중에 req.session.emaiil로 변경해야함
             const findContent = await content.findOne({ where: { id: req.params.id } });
             if (!findUser) {
                 res.status(400).json({ message: 'not user session' });
