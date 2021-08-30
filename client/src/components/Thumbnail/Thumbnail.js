@@ -2,7 +2,7 @@ import './Thumbnail.css';
 import axios from 'axios';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import CurContent from '../../pages/CurContent/CurContent';
+import CurContent from '../../pages/curContent/CurContent';
 
 function Thumbnail({ list }) {
     const [content, setContent] = useState({}); // 게시글 정보

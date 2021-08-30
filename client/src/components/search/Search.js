@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import './Search.css';
-import Thumbnail from '../Thumbnail/Thumbnail';
+import Thumbnail from '../thumbnail/Thumbnail';
 
 export default function Search({ isOpen, close, contentList }) {
     // 컨텐츠리스트를 데이터로 받아서 그걸 필터하고 맵걸어서 썸네일에 그 값을 넣어 출력하는 함수

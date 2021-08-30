@@ -1,13 +1,13 @@
 import './App.css';
 import { useState, useEffect } from 'react';
 import { BrowserRouter, Switch, Route, Redirect, useParams, Link } from 'react-router-dom';
-import Nav from './components/Nav/Nav';
-import Thumbnail from './components/Thumbnail/Thumbnail';
+import Nav from './components/nav/Nav';
+import Thumbnail from './components/thumbnail/Thumbnail';
 import axios from 'axios';
-import SignupPage from './pages/SignUp/SignUpPage';
-import CurContent from './pages/CurContent/CurContent';
-import Mypage from './pages/Mypage/Mypage';
-import NewContent from './pages/NewContent/NewContent';
+import SignupPage from './pages/signUp/SignUpPage';
+import CurContent from './pages/curContent/CurContent';
+import Mypage from './pages/mypage/Mypage';
+import NewContent from './pages/newContent/NewContent';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState();
