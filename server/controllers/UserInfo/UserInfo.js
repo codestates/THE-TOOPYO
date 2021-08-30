@@ -34,7 +34,7 @@ module.exports = {
         const { nickName, email, phoneNumber, profile_img } = req.body;
         const finduser = await user.findOne({
             where: {
-                email,
+                email: req.session.email,
             },
         });
         if (email === finduser.email) {
@@ -51,7 +51,6 @@ module.exports = {
                     },
                 },
             );
-            //! 유저정보 필요없을수도있음
             const userInfo = await user.findOne({
                 where: {
                     email,
