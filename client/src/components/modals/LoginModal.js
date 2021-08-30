@@ -16,7 +16,7 @@ function Login({ isOpen, close, loginHandler }) {
     const loginRequestHandler = () => {
         axios
             .post(
-                'https://localhost:4000/login',
+                'http://localhost:80/login',
                 {
                     email: loginInfo.email,
                     password: loginInfo.password,
@@ -24,8 +24,9 @@ function Login({ isOpen, close, loginHandler }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
-                if (res.message === 'ok') {
-                    return loginHandler(res.cookies);
+                console.log(res);
+                if (res.data.message === 'ok') {
+                    loginHandler();
                 }
             })
             .catch((err) => alert(err));

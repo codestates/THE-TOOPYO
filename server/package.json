@@ -16,7 +16,11 @@
         "express": "^4.17.1",
         "express-session": "^1.17.2",
         "mysql": "^2.18.1",
+<<<<<<< HEAD
+=======
+        "mysql2": "^2.3.0",
         "nodemon": "^2.0.12",
+>>>>>>> 61110cdc8e7dac7f5addca3aafb7e2ab8e9f33c0
         "sequelize": "^6.6.5"
     },
     "devDependencies": {

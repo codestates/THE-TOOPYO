@@ -2,20 +2,20 @@ import { useState } from 'react';
 import axios from 'axios';
 import './CurContent.css';
 
-function CurContent({ id, content, writer, auth }) {
+function CurContent({ id, content, auth }) {
     const [isAuthOk, setIsAuthOk] = useState(false); // session id 를 보내고 인증이 완료되어 투표한 경우
     const [isAuthNot, setIsAuthNot] = useState(false);
 
     const isAuthOkHandler = () => {
-        setIsAuthOk(isAuthOk ? false : true);
+        setIsAuthOk(true);
     };
 
     const isAuthNotHandler = () => {
-        setIsAuthNot(isAuthNot ? false : true);
+        setIsAuthNot(false);
     };
 
     const getAgree = () => {
-        axios.get(`https://localhost:4000/content/agree/:${id}`, { auth: auth.id }).then((res) => {
+        axios.get(`https://localhost:80/content/agree/${id}`).then((res) => {
             if (res.message === 'agree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -24,7 +24,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const getDisagree = () => {
-        axios.get(`https://localhost:4000/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.get(`https://localhost:80/content/disagree/${id}`).then((res) => {
             if (res.message === 'disagree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -33,7 +33,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const deleteContent = () => {
-        axios.delete(`https://localhost:4000/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.delete(`https://localhost:80/content/${id}`).then((res) => {
             if (res.message === 'delete complete') {
                 isAuthOkHandler();
             } else {
@@ -44,7 +44,7 @@ function CurContent({ id, content, writer, auth }) {
 
     return (
         <div>
-            <div className="content">
+            <div className="curContent">
                 <h2>{content.title}</h2>
                 <button className="editContent"></button>
                 <button className="deleteContent" onClick={deleteContent}></button>
@@ -69,27 +69,27 @@ function CurContent({ id, content, writer, auth }) {
                         ) : null}
                         <ul>
                             <li>
-                                <img
+                                {/* <img
                                     src={content.picture_1}
                                     alt={content.description}
                                     className="picture_1"
-                                    onClick={getAgree}></img>
+                                    onClick={getAgree}></img> */}
                             </li>
                             <li className="versus">
-                                <img src="" alt="versus"></img>
+                                <span>vs</span>
                             </li>
                             <li>
-                                <img
+                                {/* <img
                                     src={content.picture_2}
                                     alt={content.description}
                                     className="picture_2"
-                                    onClick={getDisagree}></img>
+                                    onClick={getDisagree}></img> */}
                             </li>
                         </ul>
                         <div className="contentInfo">
                             <div className="writer">
-                                <img src={writer.profile_img} alt="작성자 프로필 사진" className="writerProfile"></img>
-                                <span>작성자: {writer.nickname}</span>
+                                {/* <img src={content.profile_img} alt="작성자 프로필 사진" className="writerProfile"></img> */}
+                                <span>작성자: {content.nickname}</span>
                             </div>
                             <span>{content.description}</span>
                         </div>

@@ -30,8 +30,8 @@ function Signup({ isOpen, close, loginHandler }) {
 
     const signUpRequestHandler = () => {
         if (
-            !signupInfo.profile_img ||
-            !signupInfo.provider ||
+            // !signupInfo.profile_img ||
+            // !signupInfo.provider ||
             !signupInfo.nickName ||
             !signupInfo.email ||
             !signupInfo.password ||
@@ -40,9 +40,9 @@ function Signup({ isOpen, close, loginHandler }) {
         } else {
             axios
                 .post(
-                    'https://localhost:4000/signup',
+                    'https://localhost:80/signup',
                     {
-                        profile_img: signupInfo.profile_img,
+                        profile_img: 'dddd',
                         provider: signupInfo.provider,
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
