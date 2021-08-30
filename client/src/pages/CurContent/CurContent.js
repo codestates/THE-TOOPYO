@@ -7,11 +7,11 @@ function CurContent({ id, content, writer, auth }) {
     const [isAuthNot, setIsAuthNot] = useState(false);
 
     const isAuthOkHandler = () => {
-        setIsAuthOk(isAuthOk ? false : true);
+        setIsAuthOk(true);
     };
 
     const isAuthNotHandler = () => {
-        setIsAuthNot(isAuthNot ? false : true);
+        setIsAuthNot(false);
     };
 
     const getAgree = () => {
@@ -44,7 +44,7 @@ function CurContent({ id, content, writer, auth }) {
 
     return (
         <div>
-            <div className="content">
+            <div className="curContent">
                 <h2>{content.title}</h2>
                 <button className="editContent"></button>
                 <button className="deleteContent" onClick={deleteContent}></button>
@@ -76,7 +76,7 @@ function CurContent({ id, content, writer, auth }) {
                                     onClick={getAgree}></img>
                             </li>
                             <li className="versus">
-                                <img src="" alt="versus"></img>
+                                <span>vs</span>
                             </li>
                             <li>
                                 <img

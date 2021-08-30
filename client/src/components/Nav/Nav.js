@@ -22,7 +22,7 @@ function Nav({ isLogin, loginHandler }) {
                             <SearchButton />
                         </li>
                         <li>
-                            <Link to="/content">
+                            <Link to="/NewContent">
                                 <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
                         </li>{' '}
