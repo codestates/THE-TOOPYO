@@ -2,15 +2,24 @@
     text-align: center;
 }
 
+.App img {
+    vertical-align: middle;
+}
+
 @media screen and (min-width: 769px) {
     .App {
         width: 62.5vw;
         margin: auto;
     }
-}
 
-.App img {
-    vertical-align: middle;
+    .app-thumb-entire {
+        width: 70vw;
+        margin: auto;
+        padding-top: 2vw;
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
 }
 
 @keyframes App-logo-spin {
