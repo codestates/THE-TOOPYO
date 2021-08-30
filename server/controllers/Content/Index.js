@@ -12,8 +12,7 @@ content.delete('/:id', deleteContent);
 
 content.patch('/deadline/:id', close);
 
-//! 나중에 get으로 변경
-content.post('/agree/:id', agree);
-content.post('/disagree/:id', disagree);
+content.get('/agree/:id', agree);
+content.get('/disagree/:id', disagree);
 
 module.exports = content;

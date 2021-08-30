@@ -13,7 +13,6 @@ module.exports = (req, res) => {
             return res.status(401).json({ message: 'Invalid user' });
         } else {
             req.session.save(function () {
-                //console.log(data.dataValues.email);
                 req.session.email = data.dataValues.email;
                 console.log(req.session);
                 return res.status(200).json({ message: 'ok' });
