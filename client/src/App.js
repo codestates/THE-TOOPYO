@@ -13,8 +13,8 @@ export default function App() {
     const [isLogin, setIsLogin] = useState();
 
     const loginHandler = function () {
-        setIsLogin(true);
         console.log('로그인됐다');
+        setIsLogin(true);
     };
 
     const [contentList, setContentList] = useState([]);
@@ -32,7 +32,7 @@ export default function App() {
     return (
         <BrowserRouter>
             <div className="app">
-                <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
+                <Nav isLogin={isLogin} loginHandler={loginHandler} contentList={contentList}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
 
                 <Switch>

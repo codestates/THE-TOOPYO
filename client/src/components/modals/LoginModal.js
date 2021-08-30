@@ -25,8 +25,8 @@ function Login({ isOpen, close, loginHandler }) {
             )
             .then((res) => {
                 console.log(res);
-                if (res.message === 'ok') {
-                    return loginHandler();
+                if (res.data.message === 'ok') {
+                    loginHandler();
                 }
             })
             .catch((err) => alert(err));

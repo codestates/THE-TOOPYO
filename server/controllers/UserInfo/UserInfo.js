@@ -34,7 +34,7 @@ module.exports = {
         const { nickName, email, phoneNumber, profile_img } = req.body;
         const finduser = await user.findOne({
             where: {
-                email,
+                email: req.session.email,
             },
         });
         if (email === finduser.email) {
@@ -61,6 +61,7 @@ module.exports = {
                     where: {
                         email,
                     },
+
                 });
                 res.status(200).json({
                     message: 'ok',

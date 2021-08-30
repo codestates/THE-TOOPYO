@@ -6,7 +6,7 @@ import SignUpButton from '../Modals/SignUpBtn';
 import Sidebar from '../SideBar/SideBar';
 import SearchButton from '../Search/SearchBtn';
 
-function Nav({ isLogin, loginHandler }) {
+function Nav({ isLogin, loginHandler, contentList }) {
     return (
         <nav>
             <div className="navInner">
@@ -21,7 +21,7 @@ function Nav({ isLogin, loginHandler }) {
                 <div>
                     <ul className="buttonContainer">
                         <li>
-                            <SearchButton />
+                            <SearchButton contentList={contentList} />
                         </li>
                         <li>
                             <Link to="/NewContent">

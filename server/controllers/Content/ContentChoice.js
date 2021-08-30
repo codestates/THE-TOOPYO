@@ -6,7 +6,7 @@ module.exports = {
     // 찬성버튼을 눌렀을때 입니다.
     agree: async (req, res) => {
         try {
-            const findUser = await user.findOne({ where: { email: req.body.email } }); //! session
+            const findUser = await user.findOne({ where: { email: req.body.session } }); //! session
             if (findUser) {
                 // 반대한 기록이 있는지 확인
                 const checkDisagree = await disagree.findOne({
@@ -36,7 +36,7 @@ module.exports = {
     // 반대버튼을 눌렀을때 입니다.
     disagree: async (req, res) => {
         try {
-            const findUser = await user.findOne({ where: { email: req.body.email } }); //! session
+            const findUser = await user.findOne({ where: { email: req.body.session } }); //! session
             if (findUser) {
                 const checkAgree = await agree.findOne({
                     where: { userId: findUser.id, contentId: req.params.id },

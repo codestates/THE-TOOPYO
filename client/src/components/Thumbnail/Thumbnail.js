@@ -10,7 +10,7 @@ function Thumbnail({ list }) {
     const getContentDetail = () => {
         console.log('리스트!!!!! ' + list.id);
         axios.get(`https://localhost:80/content/${list.id}`).then((res) => {
-            console.log('알이에으으으라르아ㅣ릥 ' + res.data);
+            console.log('알이에스 ' + res);
             setContent(res.data);
             return <CurContent content={content} id={list.id}></CurContent>;
         });

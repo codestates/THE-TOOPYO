@@ -3,7 +3,15 @@ import React, { useState } from 'react';
 import './Search.css';
 import Thumbnail from '../Thumbnail/Thumbnail';
 
-export default function Search({ isOpen, close }) {
+export default function Search({ isOpen, close, contentList }) {
+    // 컨텐츠리스트를 데이터로 받아서 그걸 필터하고 맵걸어서 썸네일에 그 값을 넣어 출력하는 함수
+    // 저기에 리스트를 넣는게 맞는지 모르겠으나 앱 JS를 보고 일단 만듬.
+
+    const [searchKeyword, SetSearchKeyword] = useState('');
+    const inputHandler = (e) => {
+        SetSearchKeyword(([e.target.name] = e.target.value));
+    };
+
     const filteredContent = (data) => {
         data = data.filter((el) => {
             return el.data.nickName.indexOf(searchKeyword) > -1;
@@ -12,25 +20,9 @@ export default function Search({ isOpen, close }) {
             return <Thumbnail list={list} />;
         });
     };
-    // 컨텐츠리스트를 데이터로 받아서 그걸 필터하고 맵걸어서 썸네일에 그 값을 넣어 출력하는 함수
-    // 저기에 리스트를 넣는게 맞는지 모르겠으나 앱 JS를 보고 일단 만듬.
-
-    const [contentList, setContentList] = useState([]);
-    const [searchKeyword, SetSearchKeyword] = useState('');
-    const inputHandler = (e) => {
-        SetSearchKeyword(([e.target.name] = e.target.value));
-    };
-    const searchRefresh = () => {
-        SetSearchKeyword('');
-    };
     // 검색해서 리턴하고나면 검색어가 공백이 되게하는 리프레시 함수... 잘 될지 모르겠음.
     // 이걸하면 모든 문자가 검색돼서 필터 걸리지않고 아마도 모든 게시물이 썸네일로 나올거임
-    const getContentList = () => {
-        axios.get('https://localhost:4000/content').then((res) => {
-            setContentList(res.data.content);
-        });
-    };
-    getContentList();
+
     return (
         <>
             {isOpen ? (
