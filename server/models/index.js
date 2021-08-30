@@ -38,10 +38,18 @@ const { user, content, agree, disagree } = sequelize.models;
 content.belongsTo(user);
 user.hasMany(content);
 
+<<<<<<< HEAD
+user.belongsToMany(content, { through: agree });
+user.belongsToMany(content, { through: agree });
+
+user.belongsToMany(content, { through: disagree });
+user.belongsToMany(content, { through: disagree });
+=======
 user.belongsToMany(content, { through: 'agree' });
 content.belongsToMany(user, { through: 'agree' });
 
 user.belongsToMany(content, { through: 'disagree' });
 content.belongsToMany(user, { through: 'disagree' });
+>>>>>>> 61110cdc8e7dac7f5addca3aafb7e2ab8e9f33c0
 
 module.exports = db;
