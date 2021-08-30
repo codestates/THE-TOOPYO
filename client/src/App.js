@@ -11,11 +11,10 @@ import NewContent from './pages/NewContent/NewContent';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState();
-    const [auth, setAuth] = useState('');
 
-    const loginHandler = function (data) {
+    const loginHandler = function () {
         setIsLogin(true);
-        setAuth(data);
+        console.log('로그인됐다');
     };
 
     const [contentList, setContentList] = useState([]);
@@ -39,14 +38,14 @@ export default function App() {
                 <Switch>
                     <Route path="/mypage" component={Mypage} />
                     <Route path="/signup" component={SignupPage} />
-                    <Route path="/NewContent" component={NewContent} />
-                    <Route path="/CurContent" component={CurContent} />
+                    <Route path="/newContent" component={NewContent} />
+                    <Route path="/curContent" component={CurContent} />
                     <Route exact path="/">
                         <div className="app-thumb-entire">
                             {contentList.map((list) => {
                                 return (
                                     <Link to="/CurContent">
-                                        <Thumbnail list={list} auth={auth}></Thumbnail>
+                                        <Thumbnail list={list} key={list.id}></Thumbnail>
                                     </Link>
                                 );
                             })}

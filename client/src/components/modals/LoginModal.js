@@ -24,9 +24,9 @@ function Login({ isOpen, close, loginHandler }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
-                //console.log(res);
+                console.log(res);
                 if (res.message === 'ok') {
-                    return loginHandler(res.email);
+                    return loginHandler();
                 }
             })
             .catch((err) => alert(err));

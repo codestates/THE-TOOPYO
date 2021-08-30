@@ -7,17 +7,17 @@ nav {
 
 .navInner {
     margin: 0 auto;
-    width: 62.5vw;
+    width: 70vw;
     display: flex;
     justify-content: flex-end;
 }
 
-#logo {
-    background-color: #fff;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
+.logo {
+    width: 42px;
+    height: 42px;
     margin-top: 10px;
+    position: absolute;
+    left: 0;
 }
 
 .buttonContainer {

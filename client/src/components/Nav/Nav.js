@@ -13,7 +13,9 @@ function Nav({ isLogin, loginHandler }) {
                 <Sidebar />
                 <div className="logoContainer">
                     <h1>
-                        <img className="logo" src=""></img>
+                        <img
+                            className="logo"
+                            src="https://cdn.discordapp.com/attachments/877171336508739646/881725307579674664/1.png"></img>
                     </h1>
                 </div>
                 <div>
@@ -25,7 +27,7 @@ function Nav({ isLogin, loginHandler }) {
                             <Link to="/NewContent">
                                 <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
-                        </li>{' '}
+                        </li>
                         <li>
                             <SignUpButton loginHandler={loginHandler} />
                         </li>
