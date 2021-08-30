@@ -1,63 +1,57 @@
 import './App.css';
-import { useReducer, useState } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Nav from './components/Nav';
-import Thumbnail from './components/Thumbnail';
+import { useState, useEffect } from 'react';
+import { BrowserRouter, Switch, Route, Redirect, useParams, Link } from 'react-router-dom';
+import Nav from './components/Nav/Nav';
+import Thumbnail from './components/Thumbnail/Thumbnail';
 import axios from 'axios';
-import CurContent from './components/curContent';
-//import Mypage from './pages/Mypage.js';
-//import Login from './components/Login.js';
-//import NewContent from './pages/Newcontent.js';
-//import CurContent from './pages/CurContent.js';
-axios.defaults.withCredentials = true;
-function App() {
-    const [isLogin, setIsLogin] = useState(false);
+import SignupPage from './pages/SignUp/SignUpPage';
+import CurContent from './pages/CurContent/CurContent';
+import Mypage from './pages/Mypage/Mypage';
+import NewContent from './pages/NewContent/NewContent';
+
+export default function App() {
+    const [isLogin, setIsLogin] = useState();
 
     const loginHandler = function () {
+        console.log('로그인됐다');
         setIsLogin(true);
     };
 
     const [contentList, setContentList] = useState([]);
 
     const getContentList = () => {
-        axios.get('https://localhost:4000/content').then((res) => {
+        axios.get('http://localhost:80/content').then((res) => {
             setContentList(res.data.content);
         });
     };
 
-    getContentList();
+    useEffect(() => {
+        getContentList();
+    }, []);
 
     return (
         <BrowserRouter>
             <div className="app">
-                <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
-                <img className="main_banner" src="" alt=""></img>
+                <Nav isLogin={isLogin} loginHandler={loginHandler} contentList={contentList}></Nav>
+                <img className="mainBanner" src="" alt=""></img>
+
                 <Switch>
-                    {/* <Route path="/Mypage">
-                        <Mypage></Mypage>
-                    </Route>
-                    <Route path="/Login">
-                        <Login></Login>
-                    </Route>
-                    <Route path="/SigUp">
-                        <SignUp></SignUp>
-                    </Route> 
-                    <Route path="/NewContent">
-                        <NewContent></NewContent>
-                    </Route>
-                    <Route path="CurContent">
-                        <CurContent></CurContent>
-                    </Route>
-                    */}
-                    <div>
-                        <ul>
+                    <Route path="/mypage" component={Mypage} />
+                    <Route path="/signup" component={SignupPage} />
+                    <Route path="/newContent" component={NewContent} />
+                    <Route path="/curContent" component={CurContent} />
+                    <Route exact path="/">
+                        <div className="app-thumb-entire">
                             {contentList.map((list) => {
-                                <Route path="/CurContent">
-                                    <Thumbnail list={list}></Thumbnail>
-                                </Route>;
+                                return (
+                                    <Link to="/CurContent">
+                                        <Thumbnail list={list} key={list.id}></Thumbnail>
+                                    </Link>
+                                );
                             })}
-                        </ul>
-                    </div>
+                        </div>
+                    </Route>
+                    ;
                 </Switch>
             </div>
         </BrowserRouter>

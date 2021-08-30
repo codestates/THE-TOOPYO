@@ -1,33 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import './LoginModal.css';
+import './Modal.css';
 
-function Login({ isOpen, close, open }) {
+function Login({ isOpen, close, loginHandler }) {
     const [loginInfo, setLoginInfo] = useState({
         email: '',
         password: '',
     });
 
-    const [isLogin, setIsLogin] = useState({
-        isLogin: false,
-    });
-
-    const [isLoginOrSignupModalOn, setIsLoginOrSignupModalOn] = useState(false);
-
     const inputHandler = (e) => {
         setLoginInfo({ ...loginInfo, [e.target.name]: e.target.value });
     };
-    const loginHandler = () => {
-        setIsLogin(true);
-    };
-    const handleLoginOrSignupModal = () => {
-        setIsLoginOrSignupModalOn(true);
-    };
+
     const loginRequestHandler = () => {
         axios
             .post(
-                'https://localhost:4000/login',
+                'http://localhost:80/login',
                 {
                     email: loginInfo.email,
                     password: loginInfo.password,
@@ -35,7 +24,10 @@ function Login({ isOpen, close, open }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
-                if (res.message === 'ok') return loginHandler(true);
+                console.log(res);
+                if (res.data.message === 'ok') {
+                    loginHandler();
+                }
             })
             .catch((err) => alert(err));
     };
@@ -47,7 +39,6 @@ function Login({ isOpen, close, open }) {
                         <button className="closeBtn" onClick={close}>
                             X
                         </button>
-
                         <div className="modalContents">
                             <span className="title">Login</span>
                             <input
@@ -69,7 +60,7 @@ function Login({ isOpen, close, open }) {
                             <button className="loginBtn" onClick={loginRequestHandler}>
                                 로그인
                             </button>
-                            <button className="kakaoBtn">
+                            <button className="kakaoBtn" href={process.env.KAKAO_AUTH_URL}>
                                 <img
                                     className="kakaoLogo"
                                     src="https://developers.kakao.com/tool/resource/static/img/button/kakaolink/kakaolink_btn_medium.png"

@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
     }
     content.init(
         {
+<<<<<<< HEAD
             //user_id: DataTypes.INTEGER,
+=======
+            userId: DataTypes.INTEGER,
+>>>>>>> 61110cdc8e7dac7f5addca3aafb7e2ab8e9f33c0
             title: DataTypes.STRING,
             picture_1: DataTypes.STRING,
             picture_2: DataTypes.STRING,
