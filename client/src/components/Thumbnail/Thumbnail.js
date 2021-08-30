@@ -4,16 +4,15 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CurContent from '../../pages/CurContent/CurContent';
 
-function Thumbnail({ list, auth }) {
+function Thumbnail({ list }) {
     const [content, setContent] = useState({}); // 게시글 정보
-    const [writer, setWriter] = useState({}); // 작성자 정보
 
     const getContentDetail = () => {
-        axios.get(`https://localhost:80/content/:${list.id}`).then((res) => {
-            //console.log(res.data);
-            setContent(res.data.content);
-            setWriter(res.data.writer);
-            return <CurContent auth={auth} content={content} writer={writer} id={list.id}></CurContent>;
+        console.log('리스트!!!!! ' + list.id);
+        axios.get(`https://localhost:80/content/${list.id}`).then((res) => {
+            console.log('알이에스 ' + res);
+            setContent(res.data);
+            return <CurContent content={content} id={list.id}></CurContent>;
         });
     };
 

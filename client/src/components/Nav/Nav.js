@@ -6,26 +6,28 @@ import SignUpButton from '../Modals/SignUpBtn';
 import Sidebar from '../SideBar/SideBar';
 import SearchButton from '../Search/SearchBtn';
 
-function Nav({ isLogin, loginHandler }) {
+function Nav({ isLogin, loginHandler, contentList }) {
     return (
         <nav>
             <div className="navInner">
                 <Sidebar />
                 <div className="logoContainer">
                     <h1>
-                        <img className="logo" src=""></img>
+                        <img
+                            className="logo"
+                            src="https://cdn.discordapp.com/attachments/877171336508739646/881725307579674664/1.png"></img>
                     </h1>
                 </div>
                 <div>
                     <ul className="buttonContainer">
                         <li>
-                            <SearchButton />
+                            <SearchButton contentList={contentList} />
                         </li>
                         <li>
                             <Link to="/NewContent">
                                 <button className="newContentBtn navBtn">새 글 작성</button>
                             </Link>
-                        </li>{' '}
+                        </li>
                         <li>
                             <SignUpButton loginHandler={loginHandler} />
                         </li>
