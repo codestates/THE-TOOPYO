@@ -9,7 +9,6 @@ function NewContent() {
         description: '',
         picture_1: '',
         picture_2: '',
-        description: '',
         votingDeadLine: '',
     });
 
@@ -23,7 +22,15 @@ function NewContent() {
     };
 
     const uploadHandler = () => {
-        //if()
+        if (
+            !information.title ||
+            !information.description ||
+            !information.picture_1 ||
+            !information.picture_2 ||
+            !information.votingDeadLine
+        ) {
+            return;
+        }
         axios
             .post('https://localhost:4000/content', {
                 userId: '',
@@ -41,6 +48,11 @@ function NewContent() {
     return (
         <div id="inner">
             <h1 id="newTitle">새 글 작성</h1>
+            {isErr ? (
+                <div className="errMsg" onClick={setIsErr}>
+                    모든 항목을 채워서 다시 입력해주세요.
+                </div>
+            ) : null}
             <form action="" method="post">
                 {/*action="데이터보낼 서버의 파일"*/}
                 <input
@@ -52,7 +64,7 @@ function NewContent() {
                     onChange={handleInputValue}></input>
                 <button type="submit" onClick={uploadHandler}>
                     <img
-                        src="https://cdn.discordapp.com/attachments/877171336508739646/880754762616819732/NewSubmitBtn.png"
+                        src="https://cdn.discordapp.com/attachments/881710985335934979/881719851356409896/verify.png"
                         id="NewSubmit"></img>
                 </button>
                 <div className="NewContentFrame">

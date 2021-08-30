@@ -7,15 +7,15 @@ function CurContent({ id, content, writer, auth }) {
     const [isAuthNot, setIsAuthNot] = useState(false);
 
     const isAuthOkHandler = () => {
-        setIsAuthOk(isAuthOk ? false : true);
+        setIsAuthOk(true);
     };
 
     const isAuthNotHandler = () => {
-        setIsAuthNot(isAuthNot ? false : true);
+        setIsAuthNot(false);
     };
 
     const getAgree = () => {
-        axios.get(`https://localhost:4000/content/agree/:${id}`, { auth: auth.id }).then((res) => {
+        axios.get(`https://localhost:80/content/agree/:${id}`, { auth: auth.id }).then((res) => {
             if (res.message === 'agree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -24,7 +24,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const getDisagree = () => {
-        axios.get(`https://localhost:4000/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.get(`https://localhost:80/content/disagree/:${id}`, { headers: { auth: auth.id } }).then((res) => {
             if (res.message === 'disagree complete') return isAuthOkHandler();
             else {
                 return isAuthNotHandler();
@@ -33,7 +33,7 @@ function CurContent({ id, content, writer, auth }) {
     };
 
     const deleteContent = () => {
-        axios.delete(`https://localhost:4000/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
+        axios.delete(`https://localhost:80/content/:${id}`, { headers: { auth: auth.id } }).then((res) => {
             if (res.message === 'delete complete') {
                 isAuthOkHandler();
             } else {
@@ -44,7 +44,7 @@ function CurContent({ id, content, writer, auth }) {
 
     return (
         <div>
-            <div className="content">
+            <div className="curContent">
                 <h2>{content.title}</h2>
                 <button className="editContent"></button>
                 <button className="deleteContent" onClick={deleteContent}></button>
@@ -76,7 +76,7 @@ function CurContent({ id, content, writer, auth }) {
                                     onClick={getAgree}></img>
                             </li>
                             <li className="versus">
-                                <img src="" alt="versus"></img>
+                                <span>vs</span>
                             </li>
                             <li>
                                 <img

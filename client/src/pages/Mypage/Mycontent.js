@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import Thumbnail from '../../components/Thumbnail';
+import Thumbnail from '../../components/Thumbnail/Thumbnail';
 
 export default function Mycontent(props) {
     const info = props.userInfo;

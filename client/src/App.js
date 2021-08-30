@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, useParams } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect, useParams, Link } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Thumbnail from './components/Thumbnail/Thumbnail';
 import axios from 'axios';
@@ -12,6 +12,7 @@ import NewContent from './pages/NewContent/NewContent';
 export default function App() {
     const [isLogin, setIsLogin] = useState();
     const [auth, setAuth] = useState('');
+
     const loginHandler = function (data) {
         setIsLogin(true);
         setAuth(data);
@@ -21,7 +22,6 @@ export default function App() {
 
     const getContentList = () => {
         axios.get('http://localhost:80/content').then((res) => {
-            console.log(res.data);
             setContentList(res.data.content);
         });
     };
@@ -35,14 +35,24 @@ export default function App() {
             <div className="app">
                 <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
+
                 <Switch>
                     <Route path="/mypage" component={Mypage} />
-                    <Route path="/curcontent" component={CurContent} />
                     <Route path="/signup" component={SignupPage} />
                     <Route path="/NewContent" component={NewContent} />
-                    <Route path="/">
-                        <Thumbnail list={contentList} auth={auth}></Thumbnail>
+                    <Route path="/CurContent" component={CurContent} />
+                    <Route exact path="/">
+                        <div className="app-thumb-entire">
+                            {contentList.map((list) => {
+                                return (
+                                    <Link to="/CurContent">
+                                        <Thumbnail list={list} auth={auth}></Thumbnail>
+                                    </Link>
+                                );
+                            })}
+                        </div>
                     </Route>
+                    ;
                 </Switch>
             </div>
         </BrowserRouter>

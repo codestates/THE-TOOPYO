@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import './Search.css';
-import Thumbnail from '../Thumbnail';
+import Thumbnail from '../Thumbnail/Thumbnail';
 
 export default function Search({ isOpen, close }) {
     const filteredContent = (data) => {
