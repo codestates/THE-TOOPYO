@@ -9,6 +9,7 @@ import CurContent from './pages/curContent/CurContent';
 import Mypage from './pages/mypage/Mypage';
 import NewContent from './pages/newContent/NewContent';
 
+// 방예은이 수정함
 export default function App() {
     const [isLogin, setIsLogin] = useState();
 
