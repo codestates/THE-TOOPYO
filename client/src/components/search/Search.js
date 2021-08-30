@@ -26,7 +26,7 @@ export default function Search({ isOpen, close }) {
     // 검색해서 리턴하고나면 검색어가 공백이 되게하는 리프레시 함수... 잘 될지 모르겠음.
     // 이걸하면 모든 문자가 검색돼서 필터 걸리지않고 아마도 모든 게시물이 썸네일로 나올거임
     const getContentList = () => {
-        axios.get('https://localhost:4000/content').then((res) => {
+        axios.get('https://localhost:80/content').then((res) => {
             setContentList(res.data.content);
         });
     };

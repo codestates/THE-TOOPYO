@@ -41,7 +41,7 @@ export default function App() {
                     <Route path="/NewContent" component={NewContent} />
                     <Route exact path="/">
                         {contentList.map((list) => {
-                            return <Thumbnail list={list}></Thumbnail>;
+                            return <Thumbnail list={list} key={list.id}></Thumbnail>;
                         })}
                     </Route>
                     ;

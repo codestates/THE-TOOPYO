@@ -121,7 +121,6 @@ function SignupPage() {
                                 value={signupInfo.picture}
                             />
                             <button className="signUpB" onClick={signUpRequestHandler}>
-                                {' '}
                                 회원가입
                             </button>
                             <div className="loginLine">

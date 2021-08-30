@@ -24,7 +24,7 @@ function Login({ isOpen, close, loginHandler }) {
                 { 'Content-Type': 'application/json', withCredentials: true },
             )
             .then((res) => {
-                console.log(res);
+                console.log(res.headers);
                 if (res.message === 'ok') {
                     return loginHandler(res.cookies);
                 }

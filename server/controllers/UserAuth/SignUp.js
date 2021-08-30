@@ -7,8 +7,8 @@ module.exports = async (req, res) => {
         const userCheck = await user.findOne({ where: { email: email } });
         if (userCheck) {
             res.status(409).json({ message: 'email exist' });
-        } else if (nickName && email && password && phoneNumber && profile_img) {
-            const findNickname = user.findOne({
+        } else if (nickName && email && password && phoneNumber) {
+            const findNickname = await user.findOne({
                 where: {
                     nickName,
                 },
@@ -19,11 +19,11 @@ module.exports = async (req, res) => {
                     email,
                     password,
                     phoneNumber,
-                    profile_img,
+                    // profile_img,
                 });
                 res.status(201).json({ message: 'ok' });
             } else {
-                res.status(404).json({ message: 'please, rewrite nickname' });
+                res.status(500).json({ message: 'please, rewrite nickname' });
             }
         } else {
             res.status(404).json({ message: 'please, rewrite' });
