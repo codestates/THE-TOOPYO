@@ -1,6 +1,7 @@
 require('dotenv').config();
 const cors = require('cors');
 const session = require('express-session');
+const imgRouter = require('./multer');
 // const https = require('https');
 // const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -8,6 +9,7 @@ const app = express();
 
 const controllers = require('./controllers');
 const { sequelize } = require('./models');
+const user = require('./controllers/UserInfo');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(
@@ -48,7 +50,7 @@ app.use(
 );
 
 //app.use(cookieParser());
-
+app.patch('/upload', imgRouter);
 app.post('/login', controllers.login);
 app.get('/signout', controllers.signOut);
 app.post('/signup', controllers.signUp);

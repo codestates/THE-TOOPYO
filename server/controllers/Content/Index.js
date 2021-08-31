@@ -1,4 +1,5 @@
 const express = require('express');
+const { upload } = require('../../multer');
 const content = express();
 const { allContent, detailContent, createContent, retouchContent, deleteContent } = require('./ContentList');
 const { close } = require('./ContentClose');

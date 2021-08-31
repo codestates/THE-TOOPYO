@@ -31,10 +31,11 @@ module.exports = {
     // 내정보 수정입니다.
     retouchMypage: async (req, res) => {
         //! 나중에 session으로 바꿔야함
-        const { nickName, email, phoneNumber, profile_img } = req.body;
+        const { nickName, email, phoneNumber } = req.body;
+        const profile_img = req.file.location;
         const finduser = await user.findOne({
             where: {
-                email: req.session.email,
+                email: req.sessionId,
             },
         });
         if (email === finduser.email) {
@@ -61,7 +62,6 @@ module.exports = {
                     where: {
                         email,
                     },
-
                 });
                 res.status(200).json({
                     message: 'ok',

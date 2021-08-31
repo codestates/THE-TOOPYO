@@ -16,7 +16,7 @@ module.exports = {
                 `,
                 { type: QueryTypes.SELECT },
             );
-            res.status(200).json({ message: 'ok', contents: contentList });
+            res.status(200).json({ message: 'ok', content: contentList });
         } catch (err) {
             res.status(500).json({ message: 'server error' });
         }

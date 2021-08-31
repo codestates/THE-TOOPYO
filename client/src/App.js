@@ -22,6 +22,7 @@ export default function App() {
 
     const getContentList = () => {
         axios.get('http://localhost:80/content').then((res) => {
+            console.log(res.data);
             setContentList(res.data.content);
         });
     };
