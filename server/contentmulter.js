@@ -31,12 +31,12 @@ router.patch('/uploads', upload.array('file', 2), async (req, res) => {
     console.log(req);
     const { filename } = req.files;
     if (filename) {
-        await user.update(
+        await content.update(
             //
             { picture_1: files[0].path, picture_2: files[1].path },
             {
                 where: {
-                    picture_1: files[0].originalname,
+                    picture_1: files[0].originalname, // 게시물 아이디로
                 },
             },
         );

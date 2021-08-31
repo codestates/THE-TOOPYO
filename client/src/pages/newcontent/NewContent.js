@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 import './NewContent.css';
 import CurContent from '../CurContent/CurContent';
 
@@ -12,7 +12,7 @@ function NewContent() {
         picture_2: '',
         votingDeadLine: true,
     });
-
+    const history = useHistory();
     const [isOk, setIsOk] = useState(false);
 
     const isOkHandler = () => {
@@ -39,25 +39,40 @@ function NewContent() {
 
     const uploadHandler = async () => {
         if (!information.title || !information.description || !information.picture_1 || !information.picture_2) {
-            return isErrHandler();
+            isErrHandler();
+            history.push('/NewContent');
         }
         await axios
-            .post('http://localhost:80/content', {
-                userId: '',
-                title: information.title,
-                picture_1: information.picture_1,
-                picture_2: information.picture_2,
-                description: information.description,
-                votingDeadLine: information.votingDeadLine,
-            })
+            .post(
+                'http://localhost:80/content',
+                {
+                    userId: '',
+                    title: information.title,
+                    picture_1: information.picture_1.name,
+                    picture_2: information.picture_2.name,
+                    description: information.description,
+                    votingDeadLine: information.votingDeadLine,
+                },
+                { 'Content-Type': 'application/json', withCredentials: true },
+            )
             .then((res) => {
                 console.log(res.message);
-                if (res.message === 'please rewrite') return isErrHandler();
-                else if (res.message === 'ok') {
+                if (res.message === 'please rewrite') {
+                    history.push('/NewContent');
+
+                    isErrHandler();
+                } else if (res.message === 'ok') {
                     isOkHandler();
-                    return <CurContent id={res.data.content.id}></CurContent>;
+
+                    history.push({
+                        pathname: '/curContent',
+                    });
                 }
             });
+        const formData1 = new FormData();
+        formData1.append('picture_1', information.picture_1);
+        const formData2 = new FormData();
+        formData2.append('fpicture_2', information.picture_2);
         await axios.patch('http://localhost:80/uploads');
     };
 
@@ -74,17 +89,19 @@ function NewContent() {
                 {/*action="데이터보낼 서버의 파일"*/}
                 <input
                     className="inputTitle"
-                    maxlength="20"
+                    maxLength="20"
                     autoFocus
                     required
                     placeholder="제목을 입력하세요"
                     name="title"
                     onChange={(e) => handleInputValue(e)}></input>
+                {/* <Link to="/CurContent"> */}
                 <button type="submit" onClick={uploadHandler}>
                     <img
                         src="https://cdn.discordapp.com/attachments/881710985335934979/881719851356409896/verify.png"
                         id="NewSubmit"></img>
                 </button>
+                {/* </Link> */}
                 {/* --------------------- 상단 제목과 버튼 부분 ----------------- */}
                 <div className="NewContentFrame">
                     <div className="pic Left">

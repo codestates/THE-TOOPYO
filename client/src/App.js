@@ -8,13 +8,15 @@ import SignupPage from './pages/SignUp/SignUpPage';
 import CurContent from './pages/CurContent/CurContent';
 import Mypage from './pages/Mypage/Mypage';
 import NewContent from './pages/NewContent/NewContent';
+import LoginPage from './pages/Login/LoginPage';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState();
-
     const [content, setContent] = useState({}); // 게시글 정보
+    console.log(content);
 
     const loginHandler = function () {
+        console.log('로그인됐다');
         setIsLogin(true);
         // setAuth(data);
     };
@@ -26,15 +28,10 @@ export default function App() {
             setContentList(res.data.content);
         });
     };
-    const [contentId, setContentId] = useState();
-
-    const idChange = (change) => {
-        setContentId(change);
-    };
 
     const getContentDetail = (contentId) => {
-        setContentId(contentId);
         axios.get(`http://localhost:80/content/${contentId}`).then((res) => {
+            console.log(res);
             setContent(res.data.data);
         });
     };
@@ -54,7 +51,7 @@ export default function App() {
     useEffect(() => {
         getUserInfo();
     }, []);
-
+    console.log(localStorage);
     // useEffect(() => {
     //     localStorage.setItem('thetoopyo', userInfo.userInfo);
     // }, []);
@@ -63,14 +60,27 @@ export default function App() {
     return (
         <BrowserRouter>
             <div className="app">
-                <Nav isLogin={isLogin} loginHandler={loginHandler} contentList={contentList}></Nav>
+                <Nav
+                    isLogin={isLogin}
+                    loginHandler={loginHandler}
+                    contentList={contentList}
+                    getContentDetail={getContentDetail}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
 
                 <Switch>
                     <Route path="/mypage">
-                        <Mypage onClick={getUserInfo} userInfo={userInfo} getUserInfo={getUserInfo} />
+                        <Mypage
+                            onClick={getUserInfo}
+                            userInfo={userInfo}
+                            getUserInfo={getUserInfo}
+                            contentList={contentList}
+                            getContentDetail={getContentDetail}
+                        />
                     </Route>
                     <Route path="/signup" component={SignupPage} />
+                    <Route path="/login">
+                        <LoginPage loginHandler={loginHandler} />
+                    </Route>
                     <Route path="/newContent" component={NewContent} />
                     <Route path="/curContent">
                         <CurContent content={content}></CurContent>
@@ -78,28 +88,11 @@ export default function App() {
                     <Route exact path="/">
                         <div className="app-thumb-entire">
                             {contentList.map((list) => {
-                                return (
-                                    <Thumbnail
-                                        list={list}
-                                        key={list.id}
-                                        id={contentId}
-                                        getContentDetail={getContentDetail}
-                                    />
-                                );
+                                return <Thumbnail list={list} key={list.id} getContentDetail={getContentDetail} />;
                             })}
-                            {/* <div ref={observer} />
-                            <>
-                                {isLoading && (
-                                    <Thumbnail
-                                        list={list}
-                                        key={list.id}
-                                        id={contentId}
-                                        getContentDetail={getContentDetail}
-                                    />
-                                )}
-                            </> */}
                         </div>
                     </Route>
+                    ;
                 </Switch>
             </div>
         </BrowserRouter>

@@ -1,18 +1,20 @@
 import React, { useState } from 'react';
-import './SignUp.css';
+import '../../components/Modals/Modal.css';
 import axios from 'axios';
 import { Link, useHistory } from 'react-router-dom';
 // import { userInfo } from '../../../../server/controllers';
 
 function SignupPage() {
     const [signupInfo, setSignupInfo] = useState({
-        profile_img: '',
+        // profile_img: '',
         nickName: '',
         email: '',
         password: '',
         phoneNumber: '',
     });
+    console.log(signupInfo);
     const [errorMessage, setErrorMessage] = useState(false);
+    const [img, setImg] = useState('');
     const [isLogin, setIsLogin] = useState({
         isLogin: false,
     });
@@ -24,12 +26,13 @@ function SignupPage() {
     };
 
     const fileEvent = async (e) => {
-        setSignupInfo({ ...signupInfo, [e.target.name]: e.target.files[0] });
+        // setSignupInfo({ ...signupInfo, [e.target.name]: e.target.files[0].name });
+        setImg(e.target.files[0]);
         // const formData = new FormData();
         // formData.set('file', img);
         // const res = await axios.patch('/upload', formData);
         // return res;
-        console.log('파일 업로드 완료.', e.target.files[0].name);
+        console.log(e.target.files[0].name);
     };
     const inputHandler = (e) => {
         setSignupInfo({ ...signupInfo, [e.target.name]: e.target.value });
@@ -37,7 +40,7 @@ function SignupPage() {
 
     const signUpRequestHandler = async () => {
         if (
-            !signupInfo.profile_img ||
+            // !signupInfo.profile_img ||
             // !signupInfo.provider ||
             !signupInfo.nickName ||
             !signupInfo.email ||
@@ -52,7 +55,7 @@ function SignupPage() {
                 .post(
                     'http://localhost:80/signup',
                     {
-                        profile_img: signupInfo.profile_img.name,
+                        profile_img: img.name,
                         provider: signupInfo.provider,
                         nickName: signupInfo.nickName,
                         email: signupInfo.email,
@@ -67,8 +70,8 @@ function SignupPage() {
                     console.log('eeeeeee');
                 });
             const formData = new FormData();
-            formData.append('file', signupInfo.profile_img);
-            console.log(formData);
+            formData.append('file', img);
+            // console.log('formdata :', formData);
             await axios.patch('http://localhost:80/upload', formData);
         }
     };
@@ -117,20 +120,15 @@ function SignupPage() {
                                 value={signupInfo.phoneNumber}
                             />
                             <div className="profileUploader">프로필 사진을 선택하세요.</div>
-                            <input
-                                name="profile_img"
-                                className="signUpPic"
-                                type="file"
-                                placeholder="picture"
-                                onChange={fileEvent}
-                                // value={signupInfo.picture}
-                            />
+                            <input name="profile_img" className="signUpPic" type="file" onChange={fileEvent} />
                             <button className="signUpB" onClick={signUpRequestHandler}>
                                 회원가입
                             </button>
                             <div className="loginLine">
                                 이미 아이디가 있으신가요?
-                                <Link to="/">로그인</Link>
+                                <Link to="/login">
+                                    <button className="link">로그인</button>
+                                </Link>
                             </div>
                         </div>
                     </form>
