@@ -1,9 +1,9 @@
 const { user } = require('../../models');
 
 module.exports = async (req, res) => {
-    console.log(req.file);
-    const { nickName, email, password, phoneNumber, profile_img } = req.body;
-    // const profile_img = req.file;
+    console.log(req);
+    const { nickName, email, password, phoneNumber } = req.body;
+    const profile_img = req.file;
 
     try {
         const userCheck = await user.findOne({ where: { email: email } });

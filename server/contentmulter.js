@@ -27,19 +27,20 @@ const upload = multer({
 });
 // 이미지 업로드를 위한 API
 // upload의 single 메서드는 하나의 이미지를 업로드할 때 사용
-router.patch('/upload', upload.array('file', 2), async (req, res) => {
-    console.log(req.files);
+router.patch('/uploads', upload.array('file', 2), async (req, res) => {
+    console.log(req);
     const { filename } = req.files;
     if (filename) {
         await user.update(
-            { picture_1: filename[0].path, picture_2: filename[1].path },
+            //
+            { picture_1: files[0].path, picture_2: files[1].path },
             {
                 where: {
-                    profile_img: filename.originalname,
+                    picture_1: files[0].originalname,
                 },
             },
         );
-        res.status(200).json({ url: `/upload/${req.file.filename}` }); //포스트맨으로 실험 불가능(파일)
+        res.status(200).json({ url1: `/upload/${req.files[0].filename}`, url2: `/upload/${req.files[1].filename}` }); //포스트맨으로 실험 불가능(파일)
     }
 });
 

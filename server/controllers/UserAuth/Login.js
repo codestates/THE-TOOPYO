@@ -1,7 +1,7 @@
 const { user } = require('../../models');
 
 module.exports = (req, res) => {
-    console.log(req.session);
+    // console.log(req.session);
     const { email, password } = req.body;
     user.findOne({
         where: {
@@ -10,7 +10,7 @@ module.exports = (req, res) => {
         },
     }).then((data) => {
         if (!data) {
-            console.log(data);
+            // console.log(data);
             return res.status(401).json({ message: 'Invalid user' });
         } else {
             req.session.save(function () {

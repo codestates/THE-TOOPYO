@@ -2,6 +2,7 @@ require('dotenv').config();
 const cors = require('cors');
 const session = require('express-session');
 const imgRouter = require('./multer');
+const contentImgRouter = require('./contentmulter');
 // const https = require('https');
 // const cookieParser = require('cookie-parser');
 const express = require('express');
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(
     cors({
         origin: true,
-        // 'the-toopyo.com'
+        //['https://the-toopyo.com'],
         credentials: true,
         methods: ['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'],
     }),
@@ -50,6 +51,7 @@ app.use(
 );
 
 //app.use(cookieParser());
+app.patch('/uploads', contentImgRouter);
 app.patch('/upload', imgRouter);
 app.post('/login', controllers.login);
 app.get('/signout', controllers.signOut);

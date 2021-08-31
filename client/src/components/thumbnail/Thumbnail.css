@@ -1,0 +1,54 @@
+#inner {
+    width: 70vw;
+    /* border: 1px solid red; */
+    margin: auto;
+    margin-top: 2vw;
+    text-align: center;
+}
+
+.container {
+    width: 19.43vw;
+    height: 43.5vw;
+    border: 1px solid #ccc;
+    flex: 1 1 30%;
+    margin-bottom: 1.04vw;
+}
+
+.thumbPicture:hover {
+    transform: scale(1.05);
+}
+
+/* .container:nth-child(n + 3) {
+    border-right: none;
+}
+
+.container:nth-child(3n + 3) {
+    border-left: none;
+} */
+
+.thumbTitle {
+    font-size: 1.4vw;
+    overflow: scroll;
+    margin-top: 0.8vw;
+    text-align: center;
+}
+
+.thumbPicture {
+    width: 18vw;
+    height: 15vw;
+    border: 1px solid #ccc;
+    margin: 0.8vw 0.715vw;
+}
+
+.descript {
+    border: 1px solid #ccc;
+    width: 18vw;
+    height: 4vw;
+    margin: auto;
+    text-align: left;
+    overflow: scroll;
+}
+
+#thumbVersus {
+    margin: 0 8.4vw;
+}

@@ -1,6 +1,6 @@
 import './App.css';
 import { useState, useEffect } from 'react';
-import { BrowserRouter, Switch, Route, Redirect, useParams, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Nav from './components/Nav/Nav';
 import Thumbnail from './components/Thumbnail/Thumbnail';
 import axios from 'axios';
@@ -11,19 +11,31 @@ import NewContent from './pages/NewContent/NewContent';
 
 export default function App() {
     const [isLogin, setIsLogin] = useState();
-    const [auth, setAuth] = useState('');
 
-    const loginHandler = function (data) {
+    const [content, setContent] = useState({}); // 게시글 정보
+
+    const loginHandler = function () {
         setIsLogin(true);
-        setAuth(data);
+        // setAuth(data);
     };
 
     const [contentList, setContentList] = useState([]);
 
     const getContentList = () => {
         axios.get('http://localhost:80/content').then((res) => {
-            console.log(res.data);
             setContentList(res.data.content);
+        });
+    };
+    const [contentId, setContentId] = useState();
+
+    const idChange = (change) => {
+        setContentId(change);
+    };
+
+    const getContentDetail = (contentId) => {
+        setContentId(contentId);
+        axios.get(`http://localhost:80/content/${contentId}`).then((res) => {
+            setContent(res.data.data);
         });
     };
 
@@ -31,29 +43,63 @@ export default function App() {
         getContentList();
     }, []);
 
+    const [userInfo, setUserInfo] = useState([]);
+    console.log(userInfo);
+
+    function getUserInfo() {
+        axios.post('http://localhost:80/user', { email: '확인중' }).then((res) => {
+            setUserInfo(res.data.data);
+        });
+    }
+    useEffect(() => {
+        getUserInfo();
+    }, []);
+
+    // useEffect(() => {
+    //     localStorage.setItem('thetoopyo', userInfo.userInfo);
+    // }, []);
+    // console.log(localStorage);
+
     return (
         <BrowserRouter>
             <div className="app">
-                <Nav isLogin={isLogin} loginHandler={loginHandler}></Nav>
+                <Nav isLogin={isLogin} loginHandler={loginHandler} contentList={contentList}></Nav>
                 <img className="mainBanner" src="" alt=""></img>
 
                 <Switch>
-                    <Route path="/mypage" component={Mypage} />
+                    <Route path="/mypage">
+                        <Mypage onClick={getUserInfo} userInfo={userInfo} getUserInfo={getUserInfo} />
+                    </Route>
                     <Route path="/signup" component={SignupPage} />
-                    <Route path="/NewContent" component={NewContent} />
-                    <Route path="/CurContent" component={CurContent} />
+                    <Route path="/newContent" component={NewContent} />
+                    <Route path="/curContent">
+                        <CurContent content={content}></CurContent>
+                    </Route>
                     <Route exact path="/">
                         <div className="app-thumb-entire">
                             {contentList.map((list) => {
                                 return (
-                                    <Link to="/CurContent">
-                                        <Thumbnail list={list} auth={auth}></Thumbnail>
-                                    </Link>
+                                    <Thumbnail
+                                        list={list}
+                                        key={list.id}
+                                        id={contentId}
+                                        getContentDetail={getContentDetail}
+                                    />
                                 );
                             })}
+                            {/* <div ref={observer} />
+                            <>
+                                {isLoading && (
+                                    <Thumbnail
+                                        list={list}
+                                        key={list.id}
+                                        id={contentId}
+                                        getContentDetail={getContentDetail}
+                                    />
+                                )}
+                            </> */}
                         </div>
                     </Route>
-                    ;
                 </Switch>
             </div>
         </BrowserRouter>

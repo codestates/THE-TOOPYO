@@ -25,38 +25,40 @@ module.exports = {
     detailContent: async (req, res) => {
         try {
             const { id } = req.params;
-            const { email } = req.session; //! session
-            if (email !== undefined) {
-                let deTailContent = await sequelize.query(
-                    `
+            const { email } = req.body; //! session
+            // if (email !== undefined) {
+            let deTailContent = await sequelize.query(
+                `
                     SELECT contents.userId, contents.title, contents.picture_1, contents.picture_2, contents.description,contents.voting_deadline, users.nickName, users.profile_img, COUNT(agrees.userId) AS agree,  COUNT(disagrees.userId) AS disagree FROM contents
                     LEFT JOIN agrees ON contents.id = agrees.contentId
                     LEFT JOIN disagrees ON disagrees.contentId = contents.id
                     JOIN users ON contents.userId = users.id
                     WHERE contents.id = ${id};
                     `,
-                    { type: QueryTypes.SELECT },
-                );
-                const findUser = await user.findOne({ where: { email } });
-                const checkAgree = await agree.findOne({ where: { userId: findUser.id, contentId: id } });
-                const checkDisAgree = await disagree.findOne({ where: { userId: findUser.id, contentId: id } });
-                if (checkAgree) {
-                    deTailContent[0].checkAgree = true;
-                } else {
-                    deTailContent[0].checkAgree = false;
-                }
-                if (checkDisAgree) {
-                    deTailContent[0].checkDisAgree = true;
-                } else {
-                    deTailContent[0].checkDisAgree = false;
-                }
-                res.status(200).json({ message: 'ok', data: deTailContent[0] });
-            } else {
-                res.status(404).json({
-                    message: 'Content Not Found',
-                });
-            }
+                { type: QueryTypes.SELECT },
+            );
+            // const findUser = await user.findOne({ where: { email } });
+            // const checkAgree = await agree.findOne({ where: { userId: findUser.id, contentId: id } });
+            // const checkDisAgree = await disagree.findOne({ where: { userId: findUser.id, contentId: id } });
+            // if (checkAgree) {
+            //     deTailContent[0].checkAgree = true;
+            // } else {
+            //     deTailContent[0].checkAgree = false;
+            // }
+            // if (checkDisAgree) {
+            //     deTailContent[0].checkDisAgree = true;
+            // } else {
+            //     deTailContent[0].checkDisAgree = false;
+            // }
+            res.status(200).json({ message: 'ok', data: deTailContent[0] });
+            //}
+            //else {
+            // res.status(404).json({
+            //     message: 'Content Not Found',
+            // });
+            //}
         } catch (err) {
+            console.log(err);
             res.status(500).json({ message: 'server error' });
         }
     },
