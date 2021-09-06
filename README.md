@@ -33,16 +33,16 @@
 <h2>서비스 시연<h2>
 <br><br>
   
-
+<h3>메인 페이지</h3>
+<img src="https://cdn.discordapp.com/attachments/849143607721197608/884079700102750288/image0.gif" alt="메인페이지">
+  
 <h3>검색기능</h3>
-<img src="https://cdn.discordapp.com/attachments/849143607721197608/883018797429182494/5e52fff6cc9eee7f.gif">
+<img src="https://cdn.discordapp.com/attachments/849143607721197608/883018797429182494/5e52fff6cc9eee7f.gif" alt="검색기능">
 <br>
   
 <h3>투표 기능</h3>
 <img src="https://cdn.discordapp.com/attachments/849143607721197608/883018797575995402/4eaee3f2dbd013f5.gif" alt="투표장면">
 <br>
-
-  
   
 <h3>글 수정 기능</h3>
 <img src="https://cdn.discordapp.com/attachments/849143607721197608/883018791494221894/6bc8a91ead028374.gif" alt="글 수정 기능">
